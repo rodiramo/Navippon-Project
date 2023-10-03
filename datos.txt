@@ -4,6 +4,6 @@ Cuatrimestre: 4°
 Año: 2023 
 Turno: Tarde. 
 Comisión: AH.
-Apellido y nombre: Rocio Diaz Ramos, Elian Guananjay.
+Apellido y nombre: Rocio Diaz Ramos y Elian Guananjay.
 Docente: Santiago Gallino.
 Carácter de entrega: 1er parcial.
