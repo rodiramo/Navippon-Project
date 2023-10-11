@@ -8,7 +8,7 @@ let userData = {
 let observers = [];
 
 /**
- *
+ * Inicia sesión en el proyecto.
  * 
  * @param {{email: string, password: string}} user
  * @returns {Promise}
@@ -24,7 +24,7 @@ export function login({email, password}) {
             }
            
             notifyAll();
-           
+            
             return userData;
         })
         .catch(error => {
@@ -46,7 +46,7 @@ export function subscribeToAuth(callback) {
     
     observers.push(callback);
 
-   
+    
     notify(callback);
 }
 
