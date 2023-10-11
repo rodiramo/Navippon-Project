@@ -1,6 +1,7 @@
 
  import { initializeApp } from "firebase/app";
  import { getFirestore } from "firebase/firestore"
+ import { getAuth } from "firebase/auth";
     // TODO: Add SDKs for Firebase products that you want to use
 
 const firebaseConfig = {
@@ -16,4 +17,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 
     // const Sql
+
 export  const db = getFirestore(app);
+
+export const auth = getAuth(app);

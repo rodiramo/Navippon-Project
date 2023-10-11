@@ -1,9 +1,12 @@
 <script>
 import { chatSaveMessage, chatSubscribeToMessages } from './../services/chat.js';
-
+import { formatDate } from '../helpers/date.js';
+import BaseButton from '../components/BaseButton.vue';
+import BaseLabel from '../components/BaseLabel.vue';
 
 export default {
     name: 'Chat',
+    components: { BaseButton, BaseLabel },
     data() {
         return {
             messages: [],
@@ -23,9 +26,14 @@ export default {
                 .then(() => {
                     this.newMessage.message = '';
                 });
+        },
+
+        dateToString(date) {
+            return formatDate(date);
         }
     },
 
+    
     mounted() {
         chatSubscribeToMessages(messages => {
             this.messages = messages;
@@ -35,7 +43,7 @@ export default {
 </script>
 
 <template>
-    <h1 class="mb-4 text-3xl">Chat</h1>
+    <h1 class="mb-4 text-3xl">Intro a Firestore, ahora leyendo en tiempo real</h1>
 
     <div class="flex justify-between gap-4">
         <div class="w-4/6">
@@ -45,6 +53,7 @@ export default {
             >
                 <div><b>Usuario:</b> {{ message.user }}</div>
                 <div><b>Mensaje:</b> {{ message.message }}</div>
+                <div class="text-right">{{ dateToString(message.created_at) }}</div>
             </div>
         </div>
 
@@ -54,10 +63,9 @@ export default {
             @submit.prevent="sendMessage"
         >
             <div class="mb-3">
-                <label 
+                <BaseLabel 
                     for="user"
-                    class="block mb-1"
-                >Usuario</label>
+                >Usuario</BaseLabel>
                 <input
                     class="w-full py-1.5 px-2 border border-gray-400 rounded"
                     type="text"
@@ -66,20 +74,15 @@ export default {
                 >
             </div>
             <div class="mb-3">
-                <label 
-                    for="message"
-                    class="block mb-1"
-                >Mensaje</label>
+                <BaseLabel for="message">Mensaje</BaseLabel>
                 <textarea 
                     class="w-full py-1.5 px-2 border border-gray-400 rounded"
                     id="message"
                     v-model="newMessage.message"
                 ></textarea>
             </div>
-            <button
-                type="submit"
-                class="w-full p-2 rounded bg-blue-600 text-white"
-            >Enviar</button>
+            <BaseButton />
+          
         </form>
     </div>
 </template>

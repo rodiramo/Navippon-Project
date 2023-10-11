@@ -1,22 +1,24 @@
 import Home from '../pages/Home.vue';
 import About from '../pages/About.vue';
 import Chat from '../pages/Chat.vue';
-import Activities from '../pages/Activities.vue';
-import Packages from '../pages/Packages.vue';
-
+import Login from '../pages/Login.vue';
+import Register from '../pages/Register.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-// route list
+
 const routes = [
+   
     { path: '/',                component: Home, },
-    { path: '/about-us',   component: About, },
+    { path: '/quienes-somos',   component: About, },
     { path: '/chat',            component: Chat, },
-    { path: '/activities',            component: Activities, },
-    { path: '/packages',            component: Packages, },
+    { path: '/iniciar-sesion',  component: Login, },
+    { path: '/registro',        component: Register, },
 ];
+
 
 const router = createRouter({
     routes,
+  
     history: createWebHashHistory(),
 });
 
