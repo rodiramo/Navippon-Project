@@ -1,26 +1,35 @@
 <script>
 import { chatSaveMessage, chatSubscribeToMessages } from './../services/chat.js';
+import { subscribeToAuth } from './../services/auth.js';
 import { formatDate } from '../helpers/date.js';
 import BaseButton from '../components/BaseButton.vue';
 import BaseLabel from '../components/BaseLabel.vue';
+import BaseLoader from '../components/BaseLoader.vue';
 
 export default {
     name: 'Chat',
-    components: { BaseButton, BaseLabel },
+    components: { BaseButton, BaseLabel, BaseLoader },
     data() {
         return {
+            loadingMessages: true,
             messages: [],
             newMessage: {
-                user: '',
                 message: '',
-            }
+            },
+            user: {
+                id: null,
+                email: null,
+            },
+            authUnsubscribe: () => {},
+            chatUnsubscribe: () => {},
         }
     },
 
     methods: {
         sendMessage() {
             chatSaveMessage({
-                user: this.newMessage.user,
+                userId: this.user.id,
+                user: this.user.email,
                 message: this.newMessage.message,
             })
                 .then(() => {
@@ -33,11 +42,21 @@ export default {
         }
     },
 
-    
+    // Cargamos los mensajes iniciales.
     mounted() {
-        chatSubscribeToMessages(messages => {
+        this.loadingMessages = true;
+        this.chatUnsubscribe = chatSubscribeToMessages(messages => {
             this.messages = messages;
+            this.loadingMessages = false;
         });
+        this.authUnsubscribe = subscribeToAuth(newUser => {
+            this.user = {...newUser};
+        });
+    },
+    unmounted() {
+        // Muy importante no olvidarse de limpiar las suscripciones. De lo contrario, vamos a tener un "memory leak".
+        this.authUnsubscribe();
+        this.chatUnsubscribe();
     }
 }
 </script>
@@ -47,14 +66,29 @@ export default {
 
     <div class="flex justify-between gap-4">
         <div class="w-4/6">
-            <div 
-                v-for="message in messages"
-                class="mb-2"
+            <template
+                v-if="loadingMessages"
             >
-                <div><b>Usuario:</b> {{ message.user }}</div>
-                <div><b>Mensaje:</b> {{ message.message }}</div>
-                <div class="text-right">{{ dateToString(message.created_at) }}</div>
-            </div>
+                <BaseLoader />
+            </template>
+            <template
+                v-else
+            >
+                <div 
+                    v-for="message in messages"
+                    class="mb-2"
+                >
+                    <div>
+                        <b>Usuario:</b> 
+                        <router-link 
+                            class="ml-1 text-blue-600 underline"
+                            :to="`/usuario/${message.userId}`"
+                        >{{ message.user }}</router-link>
+                    </div>
+                    <div><b>Mensaje:</b> {{ message.message }}</div>
+                    <div class="text-right">{{ dateToString(message.created_at) || 'Enviando...' }}</div>
+                </div>
+            </template>
         </div>
 
         <form 
@@ -63,15 +97,8 @@ export default {
             @submit.prevent="sendMessage"
         >
             <div class="mb-3">
-                <BaseLabel 
-                    for="user"
-                >Usuario</BaseLabel>
-                <input
-                    class="w-full py-1.5 px-2 border border-gray-400 rounded"
-                    type="text"
-                    id="user"
-                    v-model="newMessage.user"
-                >
+                <span class="block mb-1">Usuario</span>
+                <p>{{ user.email }}</p>
             </div>
             <div class="mb-3">
                 <BaseLabel for="message">Mensaje</BaseLabel>
@@ -82,7 +109,10 @@ export default {
                 ></textarea>
             </div>
             <BaseButton />
-          
+            <!-- <button
+                type="submit"
+                class="w-full p-2 rounded bg-blue-600 text-white"
+            >Enviar</button> -->
         </form>
     </div>
 </template>

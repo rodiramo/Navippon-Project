@@ -1,5 +1,5 @@
 <script>
-import { subscribeToAuth } from './services/auth.js';
+import { subscribeToAuth, logout } from './services/auth.js';
 
 export default {
     name: 'App',
@@ -9,6 +9,15 @@ export default {
                 id: null,
                 email: null,
             }
+        }
+    },
+    methods: {
+        handleLogout() {
+            logout()
+                .then(user => {
+                    // Redireccionamos al perfil.
+                    this.$router.push({path: '/iniciar-sesion'});
+                });;
         }
     },
     mounted() {
@@ -22,8 +31,8 @@ export default {
 </script>
 
 <template>
-    <header>
-        <p class="text-xl">Navippon</p>
+    <header class="flex gap-8 items-center p-4 bg-slate-100">
+        <p class="text-xl">DV Chat</p>
 
         <nav>
             <ul class="flex gap-4">
@@ -31,20 +40,9 @@ export default {
                     <router-link to="/">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/about-us">About Us</router-link>
-                </li>
-                <li>
-                    <router-link to="/activities">Activities</router-link>
-                </li>
-                <li>
-                    <router-link to="/packages">Packages</router-link>
-                </li>
-                <li>
-                    <router-link to="/chat">Chat</router-link>
+                    <router-link to="/quienes-somos">Quiénes Somos</router-link>
                 </li>
 
-
-                
                 <template v-if="user.id === null">
                     <li>
                         <router-link to="/iniciar-sesion">Iniciar Sesión</router-link>
@@ -55,15 +53,22 @@ export default {
                 </template>
                 <template v-else>
                     <li>
-                        <router-link to="/iniciar-sesion">Mi Perfil</router-link>
+                        <router-link to="/chat">Chat</router-link>
                     </li>
                     <li>
-                        <form action="">
-                            <button type="submit">email (Cerrar Sesión)</button>
+                        <router-link to="/perfil">Mi Perfil</router-link>
+                    </li>
+                    <li>
+                        <form 
+                            action=""
+                            @submit.prevent="handleLogout"
+                        >
+                            <button type="submit"><b>{{ user.email }}</b> (Cerrar Sesión)</button>
                         </form>
                     </li>
                 </template>
-               
+
+
             </ul>
         </nav>
     </header>
