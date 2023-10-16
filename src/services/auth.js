@@ -59,20 +59,9 @@ export async function register({email, password}) {
  * @returns {Promise}
  */
 export function login({email, password}) {
-// export function login(user) {
-//     const {email, password} = user;
-    // const email = user.email;
-    // const password = user.password;
 
     return signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-            // userData = {
-            //     id: userCredentials.user.uid,
-            //     email: userCredentials.user.email,
-            // }
-            // Como modificamos el contenido de userData, pedimos notificar a todos los observers.
-            // notifyAll();
-            // console.log("[auth.js login] Autenticación exitosa: ", userData);
             return userData;
         })
         .catch(error => {
@@ -90,30 +79,23 @@ export function login({email, password}) {
  * @returns {Promise}
  */
 export function logout() {
-    // userData = {
-    //     id: null,
-    //     email: null,
-    // }
-    // notifyAll();
+
     return signOut(auth);
 }
 
 /**
- * Agrega el observer para ser notificado de los datos.
+ * Suscription.
  * 
  * @param {({id: string, email: string}) => void} callback 
- * @returns {() => void} Función para cancelar la suscripción.
+ * @returns {() => void} cancel suscription.
  */
 export function subscribeToAuth(callback) {
-    // Agregamos el nuevo observer/callback al stack de
-    // observers.
+   
     observers.push(callback);
 
-    // Además, vamos a pasarle inmediatamente los datos
-    // actuales del objeto.
     notify(callback);
 
-    // Retornamos la función para cancelar la suscripción, que filtra el callback que acabamos de agregar del array.
+   
     return () => {
         observers = observers.filter(obs => obs !== callback)
     };

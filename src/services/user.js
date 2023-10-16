@@ -15,14 +15,14 @@ export async function getUserProfileById(id) {
 }
 
 /**
- * Crea un perfil de usuario.
+ * Create user Profile
  * 
  * @param {string} id 
  * @param {{}} data 
  * @returns {Promise}
  */
 export async function createUserProfile(id, data) {
-    // Firestore organiza sus documentos y collections con un formato de URL que podemos utilizar para definir lo que quiero referenciar.
+   
     const userRef = doc(db, `/users/${id}`);
     return setDoc(userRef, data);
 }

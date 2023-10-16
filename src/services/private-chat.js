@@ -1,34 +1,7 @@
-/*
-Formato para los mensajes privados de chat.
-[C] => Collection
-[D] => Document
 
-[C] private-chats {
-    [D] idAuto {
-        users: {
-            idUser1: true,
-            idUser2: true,
-        }
-
-        [C] messages {
-            [D] idAuto {
-                userId: idUser1,
-                message: ...,
-                created_at: Timestamp,
-            }
-            ...
-        }
-    }
-}
-
-Según podemos ver, la idea va a ser tener una collection de "private-chats", donde cada documento represente una conversación privada.
-Dentro de ese documento, vamos a guardar los ids de los usuarios como un mapa cuyas claves van a ser los ids, y los valores serán siempre true.
-Finalmente, los messages en sí los guardamos como una subcollection.
-*/
 import { addDoc, collection, doc, DocumentReference, getDocs, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore";
 import { db } from "./firebase";
-
-// Acá vamos a guardar los documentos de los chats privados.
+//save chat
 const chatDocsCache = {};
 
 /**
@@ -71,7 +44,6 @@ export async function sendPrivateChatMessage({
 }) {
     const document = await getPrivateChatDocument({user1: sender, user2: receiver});
 
-    // Ahora que tenemos el id del documento del chat privado, podemos agregar el mensaje de chat.
     const messagesRef = collection(db, `private-chats/${document.id}/messages`);
     const response = await addDoc(messagesRef, {
         userId: sender,
@@ -89,7 +61,7 @@ export async function sendPrivateChatMessage({
  * @returns {Promise}
  */
 async function getPrivateChatDocument({user1, user2}) {
-    // Primero buscamos si no tenemos la referencia de este documento en el caché.
+  
     const doc = getFromDocsCache({user1, user2});
 
     if(doc) {
@@ -97,20 +69,18 @@ async function getPrivateChatDocument({user1, user2}) {
         return doc;
     }
 
-    // Si el documento no está, entonces lo buscamos, o en su defecto, lo creamos.
     const users = {
         [user1]: true,
         [user2]: true,
     }
     const chatRef = collection(db, 'private-chats');
     const q = query(chatRef, where('users', '==', users));
-    // Buscamos si existe un documento para esta combinación de usuarios.
+  
     const snapshot = await getDocs(q);
     let chatDoc = null;
 
     if(snapshot.empty) {
-        // Vamos a crear un mensaje en la collection.
-        // Inicialmente, el documento para este chat no existe, así que lo creamos.
+     
         chatDoc = await createPrivateChatDocument({user1, user2});
     } else {
         chatDoc = snapshot.docs[0];
