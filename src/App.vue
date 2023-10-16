@@ -35,7 +35,7 @@ export default {
       
 
         <nav>
-            <div><img src="/logo-white" alt="Navippon Logo"> <p class="text-xl">Navippon</p></div>
+            <div><img src="/public/logo-white.png" alt="Navippon Logo"> <p class="text-xl">Navippon</p></div>
             <ul class="flex gap-4">
                 <li>
                     <router-link to="/">Home</router-link>
