@@ -42,7 +42,6 @@ export default {
         }
     },
 
-    // Cargamos los mensajes iniciales.
     mounted() {
         this.loadingMessages = true;
         this.chatUnsubscribe = chatSubscribeToMessages(messages => {
@@ -54,7 +53,6 @@ export default {
         });
     },
     unmounted() {
-        // Muy importante no olvidarse de limpiar las suscripciones. De lo contrario, vamos a tener un "memory leak".
         this.authUnsubscribe();
         this.chatUnsubscribe();
     }
@@ -62,7 +60,7 @@ export default {
 </script>
 
 <template>
-    <h1 class="mb-4 text-3xl">Intro a Firestore, ahora leyendo en tiempo real</h1>
+    <h1 class="mb-4 text-3xl">Navippon lets you communicate with other users easily 😊</h1>
 
     <div class="flex justify-between gap-4">
         <div class="w-4/6">
@@ -79,14 +77,14 @@ export default {
                     class="mb-2"
                 >
                     <div>
-                        <b>Usuario:</b> 
+                        <b>User:</b> 
                         <router-link 
                             class="ml-1 text-blue-600 underline"
                             :to="`/usuario/${message.userId}`"
                         >{{ message.user }}</router-link>
                     </div>
-                    <div><b>Mensaje:</b> {{ message.message }}</div>
-                    <div class="text-right">{{ dateToString(message.created_at) || 'Enviando...' }}</div>
+                    <div><b>Message:</b> {{ message.message }}</div>
+                    <div class="text-right">{{ dateToString(message.created_at) || 'Sending...' }}</div>
                 </div>
             </template>
         </div>
@@ -97,11 +95,11 @@ export default {
             @submit.prevent="sendMessage"
         >
             <div class="mb-3">
-                <span class="block mb-1">Usuario</span>
+                <span class="block mb-1">User</span>
                 <p>{{ user.email }}</p>
             </div>
             <div class="mb-3">
-                <BaseLabel for="message">Mensaje</BaseLabel>
+                <BaseLabel for="message">Message</BaseLabel>
                 <textarea 
                     class="w-full py-1.5 px-2 border border-gray-400 rounded"
                     id="message"
@@ -109,10 +107,7 @@ export default {
                 ></textarea>
             </div>
             <BaseButton />
-            <!-- <button
-                type="submit"
-                class="w-full p-2 rounded bg-blue-600 text-white"
-            >Enviar</button> -->
+         
         </form>
     </div>
 </template>

@@ -65,12 +65,12 @@ export default {
 
 <template>
     <template v-if="!loadingProfile">
-        <h1 class="mb-4 text-3xl">Chat Privado con {{ userProfile.email }}</h1>
+        <h1 class="mb-4 text-3xl">Private Chat with {{ userProfile.email }}</h1>
 
         <section
             class="flex flex-col min-h-[300px] p-4 border mb-4"
         >
-            <h2 class="sr-only">Mensajes</h2>
+            <h2 class="sr-only">Messages</h2>
             
             <BaseLoader v-if="loadingMessages" />
             <template   v-else>
@@ -85,13 +85,13 @@ export default {
                     }"
                 >
                     <div>{{ message.message }}</div>
-                    <div class="text-right">{{ dateToString(message.created_at) || 'Enviando...' }}</div>
+                    <div class="text-right">{{ dateToString(message.created_at) || 'Sending...' }}</div>
                 </div>
             </template>
         </section>
 
         <section>
-            <h2 class="sr-only">Enviar un mensaje</h2>
+            <h2 class="sr-only">Send Message</h2>
             <form 
                 action="#"
                 class="flex gap-2"
@@ -100,13 +100,13 @@ export default {
                 <BaseLabel
                     for="message"
                     class="sr-only"
-                >Mensaje</BaseLabel>
+                >Message</BaseLabel>
                 <textarea 
                     class="w-11/12 py-1.5 px-2 border border-gray-400 rounded"
                     id="message"
                     v-model="newMessage.message"
                 ></textarea>
-                <BaseButton class="w-1/12">Enviar</BaseButton>
+                <BaseButton class="w-1/12">Send</BaseButton>
             </form>
         </section>
     </template>

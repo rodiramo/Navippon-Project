@@ -16,7 +16,7 @@ export default {
             logout()
                 .then(user => {
                     // Redireccionamos al perfil.
-                    this.$router.push({path: '/iniciar-sesion'});
+                    this.$router.push({path: '/log-in'});
                 });;
         }
     },
@@ -32,7 +32,7 @@ export default {
 
 <template>
     <header class="flex gap-8 items-center p-4 bg-slate-100">
-        <p class="text-xl">DV Chat</p>
+        <p class="text-xl">Navippon</p>
 
         <nav>
             <ul class="flex gap-4">
@@ -40,15 +40,21 @@ export default {
                     <router-link to="/">Home</router-link>
                 </li>
                 <li>
-                    <router-link to="/quienes-somos">Quiénes Somos</router-link>
+                    <router-link to="/quienes-somos">About Us</router-link>
                 </li>
 
+                <li>
+                    <router-link to="/prices">Prices</router-link>
+                </li>
+                <li>
+                    <router-link to="/packages">Packages</router-link>
+                </li>
                 <template v-if="user.id === null">
                     <li>
-                        <router-link to="/iniciar-sesion">Iniciar Sesión</router-link>
+                        <router-link to="/log-in">Log In</router-link>
                     </li>
                     <li>
-                        <router-link to="/registro">Registro</router-link>
+                        <router-link to="/registro">Register</router-link>
                     </li>
                 </template>
                 <template v-else>
@@ -56,14 +62,14 @@ export default {
                         <router-link to="/chat">Chat</router-link>
                     </li>
                     <li>
-                        <router-link to="/perfil">Mi Perfil</router-link>
+                        <router-link to="/perfil">My Profile</router-link>
                     </li>
                     <li>
                         <form 
                             action=""
                             @submit.prevent="handleLogout"
                         >
-                            <button type="submit"><b>{{ user.email }}</b> (Cerrar Sesión)</button>
+                            <button type="submit"><b>{{ user.email }}</b> (Log Out)</button>
                         </form>
                     </li>
                 </template>

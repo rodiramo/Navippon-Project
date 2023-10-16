@@ -8,7 +8,6 @@ let userData = {
 }
 let observers = [];
 
-// Verificamos si hay datos en localStorage sobre el estado de autenticación.
 if(localStorage.getItem('userData')) {
     userData = JSON.parse(localStorage.getItem('userData'));
 }
@@ -25,13 +24,12 @@ onAuthStateChanged(auth, user => {
             email: null,
         }
     }
-    // Actualizamos localStorage.
     localStorage.setItem('userData', JSON.stringify(userData));
     notifyAll();
 });
 
 /**
- * Crea una cuenta de usuario.
+ * Create user profile
  * 
  * @param {{email: string, password: string}} user
  * @returns {Promise}
@@ -40,7 +38,7 @@ export async function register({email, password}) {
     try {
         const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
 
-        // Creamos el perfil del usuario en Firestore.
+      //save user in Firebase
         createUserProfile(userCredentials.user.uid, {
             email
         });
@@ -55,7 +53,7 @@ export async function register({email, password}) {
 }
 
 /**
- * Inicia sesión en el proyecto.
+ * Session Start
  * 
  * @param {{email: string, password: string}} user
  * @returns {Promise}

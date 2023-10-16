@@ -14,13 +14,13 @@ const routes = [
     // Cada ruta para Vue Router debe ser un objeto que tenga, al menos, 2
     // propiedades: path y component.
     { path: '/',                    component: Home, },
-    { path: '/quienes-somos',       component: About, },
+    { path: '/about-us',       component: About, },
     { path: '/chat',                component: Chat,        meta: {requiresAuth: true}, },
-    { path: '/perfil',              component: Profile,     meta: {requiresAuth: true}, },
-    { path: '/usuario/:id/',        component: UserProfile, meta: {requiresAuth: true}, },
-    { path: '/usuario/:id/chat',    component: PrivateChat, meta: {requiresAuth: true}, },
-    { path: '/iniciar-sesion',      component: Login, },
-    { path: '/registro',            component: Register, },
+    { path: '/profile',              component: Profile,     meta: {requiresAuth: true}, },
+    { path: '/user/:id/',        component: UserProfile, meta: {requiresAuth: true}, },
+    { path: '/user/:id/chat',    component: PrivateChat, meta: {requiresAuth: true}, },
+    { path: '/log-in',      component: Login, },
+    { path: '/register',            component: Register, },
 ];
 
 // Creamos el router usando la función createRouter(), la cual recibe un
@@ -48,7 +48,7 @@ router.beforeEach((to, from) => {
         user.id === null &&
         to.meta?.requiresAuth
     ) {
-        return {path: '/iniciar-sesion'}
+        return {path: '/log-in'}
     }
 });
 

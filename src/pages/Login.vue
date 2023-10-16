@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-    <h1 class="mb-4 text-3xl">Iniciar Sesión</h1>
+    <h1 class="mb-4 text-3xl">Log In</h1>
 
     <LoginForm />
 </template>

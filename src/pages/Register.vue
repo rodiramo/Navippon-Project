@@ -21,8 +21,7 @@ export default {
                 ...this.form,
             })
                 .then(user => {
-                    // Redireccionamos al perfil.
-                    this.$router.push({path: '/perfil'});
+                    this.$router.push({path: '/profile'});
                 });
         }
     }
@@ -30,7 +29,7 @@ export default {
 </script>
 
 <template>
-    <h1 class="mb-4 text-3xl">Registro</h1>
+    <h1 class="mb-4 text-3xl">Register</h1>
 
     <form 
         action="#"
@@ -45,17 +44,14 @@ export default {
             />
         </div>
         <div class="mb-3">
-            <BaseLabel for="password">Contraseña</BaseLabel>
+            <BaseLabel for="password">Password</BaseLabel>
             <BaseInput 
                 type="password" 
                 id="password"
                 v-model="form.password"
             />
         </div>
-        <BaseButton>Crear Cuenta</BaseButton>
-        <!-- <button
-            type="submit"
-            class="w-full p-2 rounded bg-blue-600 text-white"
-        >Crear Cuenta</button> -->
+        <BaseButton>Create</BaseButton>
+    
     </form>
 </template>
