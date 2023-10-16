@@ -32,9 +32,10 @@ export default {
 
 <template>
     <header class="flex gap-8 items-center p-4 bg-slate-100">
-        <p class="text-xl">Navippon</p>
+      
 
         <nav>
+            <div><img src="/logo-white" alt="Navippon Logo"> <p class="text-xl">Navippon</p></div>
             <ul class="flex gap-4">
                 <li>
                     <router-link to="/">Home</router-link>
