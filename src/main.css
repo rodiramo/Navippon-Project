@@ -24,6 +24,14 @@ h1 {
     animation: loader 1.2s linear infinite;
 }
 
+nav ul li a{
+    color: white;
+}
+
+.logo-header{
+    width: 5rem;
+}
+
 @keyframes loader {
     0% {
         transform: rotate(0deg);
