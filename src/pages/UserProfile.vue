@@ -28,7 +28,7 @@ export default {
 
         <router-link
             class="text-blue-600 underline"
-            :to="`/usuario/${userProfile.id}/chat`"
+            :to="`/user/${userProfile.id}/chat`"
         >Start Private Chat</router-link>
     </template>
     <template v-else>

@@ -11,16 +11,16 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import { subscribeToAuth } from '../services/auth';
 
 const routes = [
-    { path: '/',                    component: Home, },
+    { path: '/',               component: Home, },
     { path: '/about-us',       component: About, },
-    { path: '/prices',       component: Prices, },
+    { path: '/prices',         component: Prices, },
     { path: '/packages',       component: Packages, },
-    { path: '/chat',                component: Chat,     meta: {requiresAuth: true}, },
-    { path: '/profile',              component: UserProfile, meta: {requiresAuth: true}, },
-    { path: '/user/:id/',        component: UserProfile, meta: {requiresAuth: true}, },
-    { path: '/user/:id/chat',    component: PrivateChat, meta: {requiresAuth: true}, },
-    { path: '/log-in',      component: Login, },
-    { path: '/register',            component: Register, },
+    { path: '/chat',           component: Chat,        meta: {requiresAuth: true}, },
+    { path: '/profile',        component: UserProfile, meta: {requiresAuth: true}, },
+    { path: '/user/:id/',      component: UserProfile, meta: {requiresAuth: true}, },
+    { path: '/user/:id/chat',  component: PrivateChat, meta: {requiresAuth: true}, },
+    { path: '/log-in',         component: Login, },
+    { path: '/register',       component: Register, },
 ];
 
 const router = createRouter({
