@@ -39,7 +39,7 @@ export default {
     >
         <slot 
             v-if="!loading"
-        >Enviar</slot>
+        >Send</slot>
         <BaseLoader 
             v-else 
         />

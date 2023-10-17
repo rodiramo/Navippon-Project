@@ -1,5 +1,6 @@
 <script>
-import { chatSaveMessage, chatSubscribeToMessages } from './../services/chat.js';
+import { chatSaveMessage, 
+         chatSubscribeToMessages } from './../services/chat.js';
 import { subscribeToAuth } from './../services/auth.js';
 import { formatDate } from '../helpers/date.js';
 import BaseButton from '../components/BaseButton.vue';

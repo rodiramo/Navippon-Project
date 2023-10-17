@@ -1,4 +1,7 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { createUserWithEmailAndPassword, 
+         onAuthStateChanged, 
+         signInWithEmailAndPassword, 
+         signOut } from "firebase/auth"
 import { auth } from "./firebase"
 import { createUserProfile } from "./user";
 

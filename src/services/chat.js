@@ -1,6 +1,11 @@
 
 import { db } from "./firebase";
-import { addDoc, collection, orderBy, onSnapshot, query, serverTimestamp } from "firebase/firestore";
+import { addDoc, 
+         collection, 
+         orderBy,
+         onSnapshot, 
+         query, 
+         serverTimestamp } from "firebase/firestore";
 
 
 const refChat = collection(db, 'chat');

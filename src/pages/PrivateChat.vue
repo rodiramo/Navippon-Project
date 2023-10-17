@@ -3,7 +3,8 @@ import BaseButton from '../components/BaseButton.vue';
 import BaseLabel from '../components/BaseLabel.vue';
 import BaseLoader from '../components/BaseLoader.vue';
 import { getUserProfileById } from '../services/user';
-import { sendPrivateChatMessage, subscribeToPrivateChat } from '../services/private-chat';
+import { sendPrivateChatMessage, 
+         subscribeToPrivateChat } from '../services/private-chat';
 import { subscribeToAuth } from '../services/auth';
 import { formatDate } from '../helpers/date.js';
 

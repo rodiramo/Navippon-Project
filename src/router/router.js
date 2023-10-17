@@ -3,6 +3,7 @@ import About from '../pages/About.vue';
 import Chat from '../pages/Chat.vue';
 import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
+import Profile from '../pages/Profile.vue';
 import Packages from '../pages/Packages.vue';
 import Prices from '../pages/Prices.vue';
 import UserProfile from '../pages/UserProfile.vue';
@@ -16,7 +17,7 @@ const routes = [
     { path: '/prices',         component: Prices, },
     { path: '/packages',       component: Packages, },
     { path: '/chat',           component: Chat,        meta: {requiresAuth: true}, },
-    { path: '/profile',        component: UserProfile, meta: {requiresAuth: true}, },
+    { path: '/profile',        component: Profile,     meta: {requiresAuth: true}, },
     { path: '/user/:id/',      component: UserProfile, meta: {requiresAuth: true}, },
     { path: '/user/:id/chat',  component: PrivateChat, meta: {requiresAuth: true}, },
     { path: '/log-in',         component: Login, },
