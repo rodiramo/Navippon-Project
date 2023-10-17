@@ -1,9 +1,37 @@
 <script>
+import BaseLoader from '../components/BaseLoader.vue';
+import { getUserProfileById } from '../services/user';
+
 export default {
     name: 'Profile',
+    components: { BaseLoader },
+    data() {
+        return {
+            loadingProfile: true,
+            userProfile: {
+                id: null,
+                email: null,
+            }
+        };
+    },
+    async mounted() {
+        this.loadingProfile = true;
+        this.userProfile = await getUserProfileById(this.$route.params.id);
+        this.loadingProfile = false;
+    },
 }
 </script>
 
 <template>
-    <h1 class="mb-4 text-3xl">Profile</h1>
+    <template v-if="!loadingProfile">
+        <h1 class="mb-4 text-3xl"> {{ userProfile.email }}'s Profile</h1>
+
+        <router-link
+            class="text-blue-600 underline"
+            :to="`/user/${userProfile.id}/chat`"
+        >Start Private Chat</router-link>
+    </template>
+    <template v-else>
+        <BaseLoader />
+    </template>
 </template>

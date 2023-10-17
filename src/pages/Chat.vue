@@ -81,7 +81,7 @@ export default {
                         <b>User:</b> 
                         <router-link 
                             class="ml-1 text-blue-600 underline"
-                            :to="`/usuario/${message.userId}`"
+                            :to="`/user/${message.userId}`"
                         >{{ message.user }}</router-link>
                     </div>
                     <div><b>Message:</b> {{ message.message }}</div>

@@ -1,40 +1,47 @@
-<script>
-
-import { getPackages } from "../services/packages"; 
+<template>
+    <div class="width">
+      <div v-if="packageData.length > 0">
+        <div v-for="pkg in packageData" :key="pkg.id" class="package">
+        <h2>{{ pkg.name }}</h2>
+        <p>Price: ${{ pkg.price }}</p>
+        <p>Location: {{ pkg.location }}</p>
+        <p>Description: {{ pkg.description }}</p>
+        <img :src="pkg.img" :alt="pkg.imgDescription" >
+        <ul>
+          <li v-for="activity in pkg.activities" :key="activity">{{ activity }}</li>
+        </ul>
+        <ul>
+          <li v-for="category in pkg.categories" :key="category">{{ category }}</li>
+        </ul>
+        </div>
+      </div>
+      <div v-else>
+        Loading...
+      </div>
+    </div>
+  </template>
+  
+  <script>
+  import { getPackages, getAllPackageIds } from "../services/packages";
   
   export default {
     name: 'Packages',
     data() {
       return {
-        package: {},
+        packageData: [], // Initialize packageData as an empty array
       };
     },
     async created() {
       try {
-        const id = "your-package-id"; 
-        this.package = await getPackages(id);
+        const packageIds = await getAllPackageIds();
+  
+        const packagePromises = packageIds.map((id) => getPackages(id));
+        this.packageData = await Promise.all(packagePromises);
       } catch (error) {
-        console.error("Error fetching package data", error);
+        console.error("Error fetching packages", error);
+        this.packageData = []; 
       }
     },
   };
-</script>
-<template>
-    <div class="width">
-      <h1>{{ package.name }}</h1>
-      <p>Price: {{ package.price }}</p>
-      <p>Location: {{ package.location }}</p>
-      <p>Description: {{ package.description }}</p>
-      <ul>
-        <li v-for="activity in package.activities" :key="activity">{{ activity }}</li>
-      </ul>
-      <ul>
-        <li v-for="category in package.categories" :key="category">{{ category }}</li>
-      </ul>
-    </div>
-  </template>
-  
-  <script>
-  
   </script>
   

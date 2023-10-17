@@ -1,30 +1,51 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "./firebase";
 
-
 /**
- * 
- * @param {string} id 
- * @returns {{id: string, name: string}}
+ * Get a single package by its ID from Firebase Firestore.
+ * @param {string} id - The ID of the package to fetch.
+ * @returns {Promise<{ id: string, name: string, activities: Array, categories: Array, description: string, location: string, price: number, img: string, imgDescription: string } | null>} The package data or null if not found.
  */
 export async function getPackages(id) {
- try {  
-    const snapshot = await getDoc(doc(db, `/packages/${id}`));
-    return {
+  try {
+    const snapshot = await getDoc(doc(db, `packages/${id}`));
+    const data = snapshot.data();
+    if (snapshot.exists() && data) {
+      return {
         id,
-        name: snapshot.data().name,
-        activities: snapshot.data().activities,
-        categories: snapshot.data().categories,
-        description: snapshot.data().description,
-        location: snapshot.data().location,
-        price: snapshot.data().price,
-        img: snapshot.data().img,
-        imgDescription: snapshot.data().imgDescription,
-
-    };
- } catch (error) {
-        console.error("Error fetching package:", error);
-     
+        name: data.name || "",
+        activities: data.activities || [],
+        categories: data.categories || [],
+        description: data.description || "",
+        location: data.location || "",
+        price: data.price || 0,
+        img: data.img || "",
+        imgDescription: data.imgDescription || "",
+      };
+    } else {
+      // Package not found
+      return null;
     }
+  } catch (error) {
+    console.error("Error fetching package:", error);
+    return null;
+  }
 }
 
+/**
+ * Get all package IDs from Firebase Firestore.
+ * @returns {Promise<Array<string>>} An array of package IDs.
+ */
+export async function getAllPackageIds() {
+  const packageIds = [];
+  try {
+    const querySnapshot = await getDocs(collection(db, "packages"));
+    querySnapshot.forEach((doc) => {
+      packageIds.push(doc.id);
+    });
+    return packageIds;
+  } catch (error) {
+    console.error("Error fetching package IDs", error);
+    return [];
+  }
+}

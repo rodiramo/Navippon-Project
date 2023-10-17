@@ -5,7 +5,6 @@ import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
 import Profile from '../pages/Profile.vue';
 import Packages from '../pages/Packages.vue';
-import Prices from '../pages/Prices.vue';
 import UserProfile from '../pages/UserProfile.vue';
 import PrivateChat from '../pages/PrivateChat.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -14,7 +13,6 @@ import { subscribeToAuth } from '../services/auth';
 const routes = [
     { path: '/',               component: Home, },
     { path: '/about-us',       component: About, },
-    { path: '/prices',         component: Prices, },
     { path: '/packages',       component: Packages, },
     { path: '/chat',           component: Chat,        meta: {requiresAuth: true}, },
     { path: '/profile',        component: Profile,     meta: {requiresAuth: true}, },
