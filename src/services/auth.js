@@ -69,7 +69,7 @@ export function login({email, password}) {
                 message: error.message,
                 code: error.code,
             }
-            console.error("[auth.js login] Error al autenticar: ", output);
+            console.error("[auth.js login] Error to authenticate: ", output);
             return output;
         });
 }

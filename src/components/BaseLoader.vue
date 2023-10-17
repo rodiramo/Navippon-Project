@@ -6,6 +6,6 @@ export default {
 
 <template>
     <div class="loader">
-        <div class="sr-only">Cargando...</div>
+        <div class="sr-only">Loading...</div>
     </div>
 </template>

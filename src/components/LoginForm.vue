@@ -20,19 +20,16 @@ export default {
         handleLogin() {
             if(this.processingLogin) return;
 
-            console.log("Ejecutando el login con estos datos: ", this.form);
+            console.log("Logging in with the data: ", this.form);
 
             this.processingLogin = true;
             
             login({
                 ...this.form,
-                // email: this.form.email,
-                // password: this.form.password,
             })
                 .then(user => {
                     this.processingLogin = false;
-                    // Redireccionamos al perfil.
-                    this.$router.push({path: '/perfil'});
+                    this.$router.push({path: '/profile'});
                 });
         }
     }
@@ -54,7 +51,7 @@ export default {
             />
         </div>
         <div class="mb-3">
-            <BaseLabel for="password">Contraseña</BaseLabel>
+            <BaseLabel for="password">Password</BaseLabel>
             <BaseInput
                 type="password" 
                 id="password"
@@ -64,6 +61,6 @@ export default {
         </div>
         <BaseButton
             :loading="processingLogin"
-        >Ingresar</BaseButton>
+        >Log In</BaseButton>
     </form>
 </template>
