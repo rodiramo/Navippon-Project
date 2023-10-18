@@ -5,6 +5,7 @@ export default {
     name: 'App',
     data() {
         return {
+            isMobileMenuOpen: false,
             user: {
                 id: null,
                 email: null,
@@ -12,10 +13,12 @@ export default {
         }
     },
     methods: {
+        toggleMobileMenu() {
+        this.isMobileMenuOpen = !this.isMobileMenuOpen;
+        },
         handleLogout() {
             logout()
-                .then(user => {
-                   //redirect
+          1      .then(user => {
                     this.$router.push({path: '/log-in'});
                 });;
         }
@@ -33,26 +36,29 @@ export default {
 <template>
   
       <header>
-   
-<nav class="bg-black dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+        <nav class="bg-black dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-  <router-link to="/" class="flex items-center">
+    <router-link to="/" class="flex items-center">
       <img src="/public/logo-white.png" class="h-8 mr-3" alt="Logo Navippon">
       <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Navippon</span>
-  </router-link>
-  <div class="flex md:order-2">
-      
-      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+    </router-link>
+    <div class="flex md:order-2">
+      <button
+        @click="toggleMobileMenu"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      >
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
-    </button>
-  </div>
- 
-    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-black border-gray-700">
+      </button>
+    </div>
 
-        <li>
+    <ul
+      class="mobile-menu"
+      :class="{ 'open': isMobileMenuOpen }"
+    >
+    <li>
           <router-link to="/" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</router-link>
         </li>
         <li>
@@ -88,10 +94,53 @@ export default {
                         </form>
                     </li>
     </template>
+    </ul>
+
+    <ul class="mobile-menu" :class="{ 'open': isMobileMenuOpen }">
+    <li>
+        <router-link to="/" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</router-link>
+    </li>
+    <li>
+        <router-link to="/about-us" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover-bg-transparent md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover-text-red-500 dark:hover:bg-gray-700 dark:hover-text-white md:dark:hover-bg-transparent dark:border-gray-700">About</router-link>
+    </li>
+    <li>
+        <router-link to="/packages" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover-text-red-700 md:p-0 dark:text-white md:dark:hover-text-red-500 dark:hover-bg-gray-700 dark:hover-text-white md:dark:hover-bg-transparent dark:border-gray-700">Packages</router-link>
+    </li>
+    <li>
+        <router-link to="/prices" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover-bg-transparent md:hover-text-red-700 md:p-0 dark:text-white md:dark:hover-text-red-500 dark:hover-bg-gray-700 dark:hover-text-white md:dark:hover-bg-transparent dark:border-gray-700">Pricing</router-link>
+    </li>
+    <!-- Include other links that should always be visible -->
+    <!-- <li> ... </li> -->
 </ul>
-  
+<template v-if="user.id === null">
+    <!-- Links for non-authenticated users -->
+    <li>
+        <router-link to="/log-in" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Log In</router-link>
+    </li>
+    <li>
+        <router-link to="/register" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</router-link>
+    </li>
+</template>
+<template v-else>
+    <!-- Links for authenticated users -->
+    <li>
+        <router-link to="/chat" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover-bg-transparent md:hover-text-red-700 md:p-0 dark:text-white md:dark:hover-text-red-500 dark:hover-bg-gray-700 dark:hover-text-white md:dark:hover-bg-transparent dark:border-gray-700">Chat</router-link>
+    </li>
+    <li>
+        <router-link to="/profile" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover-bg-transparent md:hover-text-red-700 md:p-0 dark:text-white md:dark:hover-text-red-500 dark:hover-bg-gray-700 dark:hover-text-white md:dark:hover-bg-transparent dark:border-gray-700">My Profile</router-link>
+    </li>
+    <li>
+        <form action="" @submit.prevent="handleLogout">
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">
+                <b>{{ user.email }}</b> (Log Out)
+            </button>
+        </form>
+    </li>
+</template>
+
   </div>
 </nav>
+
 
 </header>
 

@@ -29,7 +29,36 @@ div .width{
 .logo-header{
     width: 5rem;
 }
-
+/* CSS for the mobile menu */
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px; 
+    left: 0;
+    width: 100%;
+    background-color: #000; 
+    text-align: center;
+    z-index: -1;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mobile-menu.open {
+    transform: translateY(0);
+  }
+  
+  .mobile-menu li {
+    padding: 1rem;
+  }
+  
+  @media (max-width: 767px) {
+    .mobile-menu {
+      display: none;
+    }
+  }
+  
+  
 @keyframes loader {
     0% {
         transform: rotate(0deg);
