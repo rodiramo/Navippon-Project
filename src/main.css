@@ -11,16 +11,32 @@
 .hero {
   text-align: center;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 60vh;
 }
-
+.hero-home{ 
+  background: linear-gradient(#00004093, #0000229d), url('/public/hero-home.jpg');
+  background-size: cover;
+  color: white;
+}
+.hero-about{ 
+  background: linear-gradient(#00004093, #0000229d), url('/public/hero-about.jpg');
+  background-size: cover;
+  color: white;
+}
 .hero h1 {
   font-size: 36px;
+  color: white;
+  padding-bottom: 2rem;
 }
 
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  background: #f60;
+  background: rgb(255, 0, 0);
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -51,6 +67,64 @@
 
 .newsletter form {
   margin-top: 20px;
+}
+
+
+.package-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  max-width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.package-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.price{
+  color: #e2162e;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.package-details {
+  padding: 10px;
+}
+
+.package-details h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.package-activities,
+.package-categories {
+  list-style: none;
+  padding: 0;
+}
+
+.package-activities li{
+  margin: 4px 0;
+}
+
+.package-categories{
+  display: flex;  
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.category{
+  background-color: #e2162e;
+  color: white;
+  width: fit-content;  
+  border-radius: 2rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 
@@ -99,7 +173,12 @@ div .width{
 .logo-header{
     width: 5rem;
 }
-
+.nav-object{
+  display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+}
 .mobile-menu {
     display: flex;
     flex-direction: column;
@@ -107,27 +186,37 @@ div .width{
     top: 64px; 
     left: 0;
     width: 100%;
-    background-color: #000; 
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity)); 
     text-align: center;
     z-index: -1;
-    transform: translateY(-100%);
+    transform: translateY(-200%);
     transition: transform 0.3s ease-in-out;
   }
   
   .mobile-menu.open {
-    transform: translateY(0);
+    transform: translateY(0);    
+    display: block;
+    padding: 2rem;
+    border-radius: 0 0 6rem 6rem;
   }
   
   .mobile-menu li {
     padding: 1rem;
   }
-  
-  @media (max-width: 767px) {
-    .mobile-menu {
-      display: none;
+ 
+  @media (min-width: 768px) {
+    .nav-object{
+      justify-content: center;
     }
-  }
-  
+    .mobile-menu {
+        z-index: auto; 
+        display: flex; 
+        transform: translateY(0);
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
   
 @keyframes loader {
     0% {

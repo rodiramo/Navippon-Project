@@ -6,7 +6,7 @@ export default {
 
 <template>
 
-        <div class="hero">
+        <section class="hero hero-home">
             
             <h1><span>Navipon</span></h1>
 
@@ -14,7 +14,7 @@ export default {
            
             <router-link to="/packages" class="btn">Packages</router-link>
 
-        </div>
+        </section>
 
     <section class="destinations">
         <h2 class="mb-4"><strong>Destinos Populares</strong></h2>
