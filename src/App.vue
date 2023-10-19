@@ -59,30 +59,30 @@ export default {
         </div>
           <ul class="mobile-menu" :class="{ 'open': isMobileMenuOpen } ">
             <li>
-              <router-link to="/" class="block py-2 pl-3 pr-4 text-white rounded md:hover-text-red-700 md:p-0 dark:text-white ">Home</router-link>
+              <router-link to="/"  @click="toggleMobileMenu(false)" class="block py-2 pl-3 pr-4 text-white rounded md:hover-text-red-700 md:p-0 dark:text-white ">Home</router-link>
             </li>
             <li>
-              <router-link to="/about-us" class="block py-2 pl-3 pr-4 text-white rounded md:hover-text-red-700 md:p-0 dark:text-white ">About</router-link>
+              <router-link to="/about-us"  @click="toggleMobileMenu(false)" class="block py-2 pl-3 pr-4 text-white rounded md:hover-text-red-700 md:p-0 dark:text-white ">About</router-link>
             </li>
             <template v-if="user.id === null">
                         <!-- Links for non-authenticated users -->
                         <li>
-                            <router-link to="/log-in" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">Log In</router-link>
+                            <router-link to="/log-in"  @click="toggleMobileMenu(false)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">Log In</router-link>
                         </li>
                         <li>
-                        <router-link to="/register" class="text-white bg-blue-700 hover-bg-blue-800 focus-ring-4 focus-outline-none focus-ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md-mr-0 dark-bg-red-600 dark-hover-bg-blue-700 dark-focus-ring-blue-800">Register</router-link>
+                        <router-link to="/register"  @click="toggleMobileMenu(false)" class="text-white bg-blue-700 hover-bg-blue-800 focus-ring-4 focus-outline-none focus-ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md-mr-0 dark-bg-red-600 dark-hover-bg-blue-700 dark-focus-ring-blue-800">Register</router-link>
                         </li>
                     </template>
                     <template v-else>
                         <!-- Links for authenticated users -->
                         <li>
-                        <router-link to="/chat" class="block py-2 pl-3 pr-4 text-white rounded md-hover-text-red-700 md-p-0 dark-text-white md-dark-hover-text-red-500 dark-hover-bg-gray-700 dark-hover-text-white md-dark-hover-bg-transparent dark-border-gray-700">Chat</router-link>
+                        <router-link to="/chat" @click="toggleMobileMenu(false)"  class="block py-2 pl-3 pr-4 text-white rounded md-hover-text-red-700 md-p-0 dark-text-white md-dark-hover-text-red-500 dark-hover-bg-gray-700 dark-hover-text-white md-dark-hover-bg-transparent dark-border-gray-700">Chat</router-link>
                         </li>
                         <li>
-                        <router-link to="/packages" class="block py-2 pl-3 pr-4 text-white rounded  md-hover-text-red-700 md-p-0 dark-text-white md-dark-hover-text-red-500 dark-hover-bg-gray-700 dark-hover-text-white md-dark-hover-bg-transparent dark-border-gray-700">Packages</router-link>
+                        <router-link to="/packages"  @click="toggleMobileMenu(false)" class="block py-2 pl-3 pr-4 text-white rounded  md-hover-text-red-700 md-p-0 dark-text-white md-dark-hover-text-red-500 dark-hover-bg-gray-700 dark-hover-text-white md-dark-hover-bg-transparent dark-border-gray-700">Packages</router-link>
                         </li>
                         <li>
-                        <router-link to="/profile" class="block py-2 pl-3 pr-4 text-white rounded  md-hover-text-red-700 md-p-0 dark-text-white md-dark-hover-text-red-500 dark-hover-bg-gray-700 dark-hover-text-white md-dark-hover-bg-transparent dark-border-gray-700">My Profile</router-link>
+                        <router-link to="/profile"  @click="toggleMobileMenu(false)" class="block py-2 pl-3 pr-4 text-white rounded  md-hover-text-red-700 md-p-0 dark-text-white md-dark-hover-text-red-500 dark-hover-bg-gray-700 dark-hover-text-white md-dark-hover-bg-transparent dark-border-gray-700">My Profile</router-link>
                         </li>
                         <form action="" @submit.prevent="handleLogout">
                             <button type="submit" class="text-white bg-blue-700 hover-bg-blue-800 focus-ring-4 focus-outline-none focus-ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md-mr-0 dark-bg-red-600 dark-hover-bg-blue-700 dark-focus-ring-blue-800">
@@ -110,7 +110,7 @@ export default {
             </router-link>
             <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark-text-gray-400">
                 <li>
-                    <router-link to="/" class="mr-4 hover-underline md-mr-6">Home</router-link>
+                    <router-link to="/"  class="mr-4 hover-underline md-mr-6">Home</router-link>
                 </li>
                 <li>
                     <router-link to="/about-us" class="mr-4 hover-underline md-mr-6">About</router-link>

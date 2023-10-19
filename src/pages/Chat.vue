@@ -61,8 +61,16 @@ export default {
 </script>
 
 <template>
-    <h1 class="mb-4 text-3xl">Navippon lets you communicate with other users easily 😊</h1>
+      <section class="hero hero-home">
+            
+            <h1><span>Chat</span></h1>
 
+            <p>Explore Japan in a way that fits you</p>
+            <p>Check out all our packages for making your trip perfect!</p>
+           
+            <router-link to="/packages" class="btn">Packages</router-link>
+
+        </section>
     <div class="flex justify-between gap-4">
         <div class="w-4/6">
             <template

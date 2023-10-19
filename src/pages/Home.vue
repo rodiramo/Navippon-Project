@@ -8,16 +8,17 @@ export default {
 
         <section class="hero hero-home">
             
-            <h1><span>Navipon</span></h1>
+            <h1><span>Navippon</span></h1>
 
-            <p>Explora nuevos destinos con nosotros</p>
+            <p>Explore Japan in a way that fits you</p>
+            <p>Check out all our packages for making your trip perfect!</p>
            
             <router-link to="/packages" class="btn">Packages</router-link>
 
         </section>
 
     <section class="destinations">
-        <h2 class="mb-4"><strong>Destinos Populares</strong></h2>
+        <h2 class="mb-4"><strong>Popular Cities in Japan</strong></h2>
         <div class="destination">
             <img src="avion.png" alt="icono" width="50" height="50">
             <h3>Kyoto Serenity</h3>
@@ -34,13 +35,10 @@ export default {
             <p>Vivi tu propia aventura</p>
         </div>
     </section>
-    <section class="newsletter">
-        <h2>Suscríbete a nuestro boletín</h2>
-        <p>Recibe ofertas especiales y actualizaciones de viajes en tu bandeja de entrada.</p>
-        <form action="#" class="mt-4 mx-4" method="post">
-            <input type="email" name="email" placeholder="Tu correo electrónico">
-            <button type="submit" class="btn">Suscribirse</button>
-        </form>
-    </section>
 
+    <section class="destinations">
+        <h2 class="mb-4"><strong>Why choose Navippon?</strong></h2>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quasi nobis deserunt, quae non quod nulla vero dolore ducimus sapiente! Unde, illum. Porro sunt, repellendus aspernatur possimus adipisci fugiat placeat.</p>
+    </section>
+ 
 </template>
