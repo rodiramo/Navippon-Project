@@ -1,7 +1,77 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
+#app{
+
+  display: grid;
+  grid-template-rows: 56px 1fr 75px;
+}
+
+.hero {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.hero h1 {
+  font-size: 36px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #f60;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.destinations {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.destination {
+  display: inline-block;
+  margin: 0 20px;
+  text-align: center;
+}
+
+.destination img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.newsletter {
+  text-align: center;
+  background: #f4f4f4;
+  padding: 40px 0;
+}
+
+.newsletter form {
+  margin-top: 20px;
+}
+
+
+
+.footer{
+
+  display: flex;
+  justify-content: center;
+  height: 75px;
+  background-color: #333;
+  color: #fff;
+  
+}
+  
+  
+.footer p{
+  
+  margin: 0;
+  
+}
+  
 
 h1 {
     color: black;
@@ -29,7 +99,7 @@ div .width{
 .logo-header{
     width: 5rem;
 }
-/* CSS for the mobile menu */
+
 .mobile-menu {
     display: flex;
     flex-direction: column;

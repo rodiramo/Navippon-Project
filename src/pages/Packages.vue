@@ -1,5 +1,5 @@
 <template>
-    <div class="width">
+    <div class=" container width">
       <div v-if="packageData.length > 0">
         <div v-for="pkg in packageData" :key="pkg.id" class="package">
         <h2>{{ pkg.name }}</h2>
