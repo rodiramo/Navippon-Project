@@ -7,6 +7,7 @@ import { db } from "./firebase";
  * @returns {{id: string, email: string, name: string, interests: string, role: string}}
  */
 export async function getUserProfileById(id) {
+   try{
     const snapshot = await getDoc(doc(db, `/users/${id}`));
     if (snapshot.exists()) {
         const data = snapshot.data();
@@ -20,6 +21,10 @@ export async function getUserProfileById(id) {
     } else {
         return null; 
     }
+} catch (error) {
+    console.error("Error fetching user:", error);
+    return null;
+  }
 }
 
 /**

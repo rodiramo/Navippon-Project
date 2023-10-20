@@ -35,12 +35,7 @@ onAuthStateChanged(auth, (user) => {
     localStorage.setItem("userData", JSON.stringify(userData));
     notifyAll();
   });
-/**
- * Create user profile
- * 
- * @param {{email: string, name: string, interests: string, password: string}} user
- * @returns {Promise}
- */
+
 
 function checkAdminCriteria(email) {
     const isAdmin = email.endsWith('@admin.com'); 

@@ -1,4 +1,4 @@
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
+import { doc, getDoc, getDocs, setDoc, collection } from "firebase/firestore";
 import { db } from "./firebase";
 
 /**
@@ -23,7 +23,6 @@ export async function getPackages(id) {
         imgDescription: data.imgDescription || "",
       };
     } else {
-      // Package not found
       return null;
     }
   } catch (error) {
@@ -49,3 +48,20 @@ export async function getAllPackageIds() {
     return [];
   }
 }
+
+
+/**
+ * Create package
+ * 
+ * @param {string} id 
+ * @param {{}} data 
+ * @returns {Promise}
+ * 
+ */
+
+export async function createPackage(id, data) {
+   
+  const userRef = doc(db, `/package/${id}`);
+  return setDoc(userRef, data);
+}
+
