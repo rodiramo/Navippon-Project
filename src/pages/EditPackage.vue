@@ -20,6 +20,7 @@
   
   <script>
 export default {
+    name: 'EditPackage',
   data() {
     return {
       editedPackage: {

@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       packageData: [],
-      isAdmin: false, // Initialize packageData as an empty array
+      isAdmin: true, 
     };
   },
   
@@ -95,10 +95,9 @@ export default {
       </ul>
         </div>
 
-        <!-- Inside package card -->
     <div class="package-actions">
-      <!-- Show the "Edit" button only for admin users -->
-      <button v-if="isAdmin" @click="editPackage(pkg)">Edit</button>
+      <router-link v-if="isAdmin" :to="`/edit-package/${pkg.id}`">Edit</router-link>
+
     </div>
 
         </div>
