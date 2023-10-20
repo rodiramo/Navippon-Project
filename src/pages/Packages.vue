@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       packageData: [],
-      isAdmin: false, 
+      isAdmin: true, 
     };
   },
   
@@ -33,13 +33,11 @@ export default {
         this.isAdmin = true;
       }
       },
-      methods: {
-  async editPackage(pkg) {
-    if (this.isAdmin) {
+      async editPackage(pkg) {
+      if (this.isAdmin) {
       this.$router.push(`/edit-package/${pkg.id}`);
-    }
+      }
   },
-}
 
   },
 };

@@ -15,6 +15,7 @@ export async function getUserProfileById(id) {
             email: data.email,
             name: data.name,
             interests: data.interests,
+            role: data.role,
         };
     } else {
         return null; 

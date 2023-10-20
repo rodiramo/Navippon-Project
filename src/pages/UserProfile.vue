@@ -13,6 +13,7 @@ export default {
                 email: null,
                 name: null,
                 interests: null,
+                role: null,
             }
         };
     },
@@ -35,6 +36,8 @@ export default {
          <dd>{{userProfile.email}}</dd>
          <dt>Interests</dt>
          <dd>{{userProfile.interests}}</dd>
+         <dt>Role</dt>
+         <dd>{{userProfile.role}}</dd>
         </dl>   
         <router-link
             class="btn"

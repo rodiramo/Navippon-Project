@@ -29,7 +29,7 @@ export default {
             })
                 .then(user => {
                     this.processingLogin = false;
-                    this.$router.push({path: '/profile'});
+                    this.$router.push({path: '/user/' + user.id});
                 });
         }
     }
@@ -51,7 +51,7 @@ export default {
             />
         </div>
         <div class="mb-3">
-            <BaseLabel for="password">Password</BaseLabel>
+            <BaseLabel for="password">Password* (min 6 characters)</BaseLabel>
             <BaseInput
                 type="password" 
                 id="password"

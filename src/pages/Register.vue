@@ -25,7 +25,7 @@ export default {
                 ...this.form,
             })
                 .then(user => {
-                    this.$router.push({path: '/'});
+                    this.$router.push({path: '/user/' + user.id});
                 });
         }
     }
@@ -65,14 +65,14 @@ export default {
             />
         </div>
         <div class="mb-3">
-            <BaseLabel for="password">Password</BaseLabel>
+            <BaseLabel for="password">Password* <span>(min. 6 characters)</span></BaseLabel>
             <BaseInput 
                 type="password" 
                 id="password"
                 v-model="form.password"
             />
         </div>
-        <BaseButton>Create</BaseButton>
+        <BaseButton>Register</BaseButton>
     
     </form>
 </template>

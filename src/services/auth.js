@@ -18,22 +18,23 @@ if(localStorage.getItem('userData')) {
     userData = JSON.parse(localStorage.getItem('userData'));
 }
 
-onAuthStateChanged(auth, user => {
-    if(user) {
-        userData = {
-            id: user.uid,
-            email: user.email,
-        }
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+      userData = {
+        id: user.uid,
+        email: user.email,
+        role: checkAdminCriteria(user.email),
+      };
     } else {
-        userData = {
-            id: null,
-            email: null,
-        }
+      userData = {
+        id: null,
+        email: null,
+        role: null, 
+      };
     }
-    localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem("userData", JSON.stringify(userData));
     notifyAll();
-});
-
+  });
 /**
  * Create user profile
  * 
