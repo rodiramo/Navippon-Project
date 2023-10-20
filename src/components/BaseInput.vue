@@ -4,6 +4,7 @@ export default {
     props: {
         modelValue: {
             type: String,
+            
         },
     },
     emits: ['update:modelValue']

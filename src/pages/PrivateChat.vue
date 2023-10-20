@@ -93,7 +93,7 @@ export default {
         </section>
 
         <section>
-            <h2 class="sr-only">Send Message</h2>
+            <h2 class="sr-only container">Send Message</h2>
             <form 
                 action="#"
                 class="flex gap-2"
@@ -108,7 +108,7 @@ export default {
                     id="message"
                     v-model="newMessage.message"
                 ></textarea>
-                <BaseButton class="w-1/12">Send</BaseButton>
+                <BaseButton class="container" width="200px">Send</BaseButton>
             </form>
         </section>
     </template>

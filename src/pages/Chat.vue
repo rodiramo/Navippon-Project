@@ -71,8 +71,8 @@ export default {
             <router-link to="/packages" class="btn">Packages</router-link>
 
         </section>
-    <div class="flex justify-between gap-4">
-        <div class="w-4/6">
+    <div class="d-flex justify-content-center align-items-center ">
+        <div class=" w-4/6 container mx-3 my-3 border rounded border-dark">
             <template
                 v-if="loadingMessages"
             >
@@ -98,23 +98,29 @@ export default {
             </template>
         </div>
 
-        <form 
-            class="w-2/6"
+        <form  
+            class="w-2/6 mx-5 px-5 border-dark border rounded mt-3 pb-3"
             action="#" 
             @submit.prevent="sendMessage"
         >
             <div class="mb-3">
-                <span class="block mb-1">User</span>
-                <p>{{ user.email }}</p>
+                <span class="block text-primary">User</span><p>{{ user.email }}</p>
             </div>
-            <div class="mb-3">
-                <BaseLabel for="message">Message</BaseLabel>
-                <textarea 
-                    class="w-full py-1.5 px-2 border border-gray-400 rounded"
-                    id="message"
-                    v-model="newMessage.message"
-                ></textarea>
+            <div class="example-container">
+                <div class="example-row mb-4">
+                    <div class="example-content-main">
+                        <BaseLabel for="message">Message</BaseLabel>
+                    </div>
+                    <div class="example-content-dark mb-3">
+                        <textarea class="w-full py-1.5 px-2 rounded border border   border-primary-400 rounded"
+                        id="message"
+                        v-model="newMessage.message"
+                    >   </textarea>
+                    </div>
+                </div>
             </div>
+            
+          
             <BaseButton />
          
         </form>

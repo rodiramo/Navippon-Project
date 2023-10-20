@@ -20,17 +20,17 @@ export default {
     <section class="destinations">
         <h2 class="mb-4"><strong>Popular Cities in Japan</strong></h2>
         <div class="destination">
-            <img src="avion.png" alt="icono" width="50" height="50">
+            <img src="/avion.png" alt="icono" width="50" height="50">
             <h3>Kyoto Serenity</h3>
             <p>Personaliza tu aventura</p>
         </div>
         <div class="destination">
-            <img src="avion.png" alt="icono" width="50" height="50">
+            <img src="/avion.png" alt="icono" width="50" height="50">
             <h3> Knkaku-ji </h3>
             <p>Viajes super económicos</p>
         </div>
         <div class="destination">
-            <img src="avion.png" alt="icono" width="50" height="50">
+            <img src="/avion.png" alt="icono" width="50" height="50">
             <h3>Tokyo Tower</h3>
             <p>Vivi tu propia aventura</p>
         </div>
