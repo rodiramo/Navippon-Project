@@ -33,13 +33,18 @@ export default {
         this.isAdmin = true;
       }
       },
+      async createPackage(pkg) {
+      if (this.isAdmin) {
+      this.$router.push(`/create-package/${pkg.id}`);
+      }
+    },
       async editPackage(pkg) {
       if (this.isAdmin) {
       this.$router.push(`/edit-package/${pkg.id}`);
       }
+    },
   },
 
-  },
 };
 </script>
 
@@ -51,6 +56,7 @@ export default {
 
             <p>Check our destination packages, with activities that suit only you!</p>
            
+            <router-link class="btn" v-if="isAdmin" :to="`/create-package/${pkg.id}`">Create</router-link>
 
         </section>
 
@@ -94,8 +100,8 @@ export default {
         </div>
 
     <div class="package-actions">
-      <router-link v-if="isAdmin" :to="`/edit-package/${pkg.id}`">Edit</router-link>
-
+      <router-link class="mr-2 link" v-if="isAdmin" :to="`/edit-package/${pkg.id}`">Edit</router-link>
+   
     </div>
 
         </div>
