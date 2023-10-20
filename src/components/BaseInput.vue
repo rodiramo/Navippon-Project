@@ -2,9 +2,7 @@
 export default {
     name: 'BaseInput',
     props: {
-        modelValue: {
-            type: String,
-        },
+        modelValue: [String, Number],
     },
     emits: ['update:modelValue']
 }
