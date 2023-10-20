@@ -3,10 +3,10 @@ import About from '../pages/About.vue';
 import Chat from '../pages/Chat.vue';
 import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
-import Profile from '../pages/Profile.vue';
 import Packages from '../pages/Packages.vue';
 import UserProfile from '../pages/UserProfile.vue';
 import PrivateChat from '../pages/PrivateChat.vue';
+import EditPackage from '../pages/EditPackage.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { subscribeToAuth } from '../services/auth';
 
@@ -15,9 +15,9 @@ const routes = [
     { path: '/about-us',       component: About, },
     { path: '/packages',       component: Packages, },
     { path: '/chat',           component: Chat,        meta: {requiresAuth: true}, },
-    { path: '/profile',        component: Profile,     meta: {requiresAuth: true}, },
-    { path: '/user/:id/',      component: UserProfile, meta: {requiresAuth: true}, },
+    { path: '/user/:id',      component: UserProfile, meta: {requiresAuth: true}, },
     { path: '/user/:id/chat',  component: PrivateChat, meta: {requiresAuth: true}, },
+    { path: '/edit-package/:id', component: EditPackage,  meta: {requiresAuth: true}, },
     { path: '/log-in',         component: Login, },
     { path: '/register',       component: Register, },
 ];
@@ -30,6 +30,9 @@ const router = createRouter({
 let user = {
     id: null,
     email: null,
+    name: null,
+    interests:null,
+    role: null,
 }
 
 subscribeToAuth(newUser => {

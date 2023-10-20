@@ -11,6 +11,8 @@ export default {
             userProfile: {
                 id: null,
                 email: null,
+                name: null,
+                interests: null,
             }
         };
     },
@@ -24,12 +26,21 @@ export default {
 
 <template>
     <template v-if="!loadingProfile">
-        <h1 class="mb-4 text-3xl"> {{ userProfile.email }}'s Profile</h1>
-
+        <section class="hero-login">
+        <h1 class="mb-4 text-3xl"> {{ userProfile.name }}'s Profile</h1>
+        </section>
+        <div class="container">
+         <dl>
+         <dt>Email</dt>
+         <dd>{{userProfile.email}}</dd>
+         <dt>Interests</dt>
+         <dd>{{userProfile.interests}}</dd>
+        </dl>   
         <router-link
-            class="text-blue-600 underline"
+            class="btn"
             :to="`/user/${userProfile.id}/chat`"
         >Start Private Chat</router-link>
+        </div>
     </template>
     <template v-else>
         <BaseLoader />

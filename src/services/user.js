@@ -4,13 +4,20 @@ import { db } from "./firebase";
 /**
  * 
  * @param {string} id 
- * @returns {{id: string, email: string}}
+ * @returns {{id: string, email: string, name: string, interests: string, role: string}}
  */
 export async function getUserProfileById(id) {
     const snapshot = await getDoc(doc(db, `/users/${id}`));
-    return {
-        id,
-        email: snapshot.data().email,
+    if (snapshot.exists()) {
+        const data = snapshot.data();
+        return {
+            id: id,
+            email: data.email,
+            name: data.name,
+            interests: data.interests,
+        };
+    } else {
+        return null; 
     }
 }
 

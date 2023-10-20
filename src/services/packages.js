@@ -2,8 +2,8 @@ import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "./firebase";
 
 /**
- * Get a single package by its ID from Firebase Firestore.
- * @param {string} id - The ID of the package to fetch.
+ * 
+ * @param {string} id 
  * @returns {Promise<{ id: string, name: string, activities: Array, categories: Array, description: string, location: string, price: number, img: string, imgDescription: string } | null>} The package data or null if not found.
  */
 export async function getPackages(id) {
@@ -33,8 +33,8 @@ export async function getPackages(id) {
 }
 
 /**
- * Get all package IDs from Firebase Firestore.
- * @returns {Promise<Array<string>>} An array of package IDs.
+ * Get all package IDs 
+ * @returns {Promise<Array<string>>} 
  */
 export async function getAllPackageIds() {
   const packageIds = [];

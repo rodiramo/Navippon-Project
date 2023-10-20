@@ -11,6 +11,8 @@ export default {
             userProfile: {
                 id: null,
                 email: null,
+                name: null,
+                interests: null,
             }
         };
     },

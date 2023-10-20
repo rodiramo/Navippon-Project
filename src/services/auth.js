@@ -8,6 +8,9 @@ import { createUserProfile } from "./user";
 let userData = {
     id: null,
     email: null,
+    name: null,
+    interests:null,
+    role: null,
 }
 let observers = [];
 
@@ -34,26 +37,68 @@ onAuthStateChanged(auth, user => {
 /**
  * Create user profile
  * 
- * @param {{email: string, password: string}} user
+ * @param {{email: string, name: string, interests: string, password: string}} user
  * @returns {Promise}
  */
-export async function register({email, password}) {
+
+function checkAdminCriteria(email) {
+    const isAdmin = email.endsWith('@admin.com'); 
+    return isAdmin;
+}
+
+/**
+ * Create user profile
+ * 
+ * @param {{email: string, name: string, interests: string, password: string}} user
+ * @returns {Promise}
+ */
+export async function register({ email, password, name, interests }) {
     try {
+        const isAdmin = checkAdminCriteria(email);
+
         const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
 
-      //save user in Firebase
-        createUserProfile(userCredentials.user.uid, {
-            email
+        const userRole = isAdmin ? "admin" : "user";
+
+        // Save user in Firebase 
+        await createUserProfile(userCredentials.user.uid, {
+            name,
+            interests,
+            email,
+            role: userRole,
         });
 
-        return {...userData};
+        const updatedUserData = {
+            id: userCredentials.user.uid,
+            email,
+            name,
+            interests,
+            role: userRole, 
+        };
+
+        userData = updatedUserData;
+
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        return updatedUserData;
     } catch (error) {
+        console.error("Error during user registration:", error);
         return {
             code: error.code,
-            message: error.message
-        }
+            message: error.message,
+        };
     }
 }
+
+
+/**
+ * Fetch user data from the server
+ * @returns {Promise}
+ */
+export async function fetchUserData() {
+    return userData;
+}
+
 
 /**
  * Session Start

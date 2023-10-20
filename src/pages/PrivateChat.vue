@@ -66,8 +66,9 @@ export default {
 
 <template>
     <template v-if="!loadingProfile">
-        <h1 class="mb-4 text-3xl">Private Chat with {{ userProfile.email }}</h1>
-
+        <section class="hero-login">
+        <h1 class="mb-4 text-3xl">Private Chat with {{ userProfile.name }}</h1>
+        </section>
         <section
             class="flex flex-col min-h-[300px] p-4 border mb-4"
         >

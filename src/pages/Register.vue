@@ -11,17 +11,21 @@ export default {
         return {
             form: {
                 email: '',
+                name: '',
+                interests: '',
                 password: '',
+                role: 'user',
             },
         }
     },
     methods: {
         handleSubmit() {
+            console.log('Form submitted');
             register({
                 ...this.form,
             })
                 .then(user => {
-                    this.$router.push({path: '/profile'});
+                    this.$router.push({path: '/'});
                 });
         }
     }
@@ -29,8 +33,9 @@ export default {
 </script>
 
 <template>
+    <section class="hero-login">
     <h1 class="mb-4 text-3xl">Register</h1>
-
+    </section>
     <form 
         action="#"
         @submit.prevent="handleSubmit"
@@ -41,6 +46,22 @@ export default {
                 type="email"
                 id="email"
                 v-model="form.email"
+            />
+        </div>
+        <div class="mb-3">
+            <BaseLabel for="interest">Name</BaseLabel>
+            <BaseInput
+                type="text"
+                id="name"
+                v-model="form.name"
+            />
+        </div>
+        <div class="mb-3">
+            <BaseLabel for="interests">Interests</BaseLabel>
+            <BaseInput
+                type="text"
+                id="interests"
+                v-model="form.interests"
             />
         </div>
         <div class="mb-3">

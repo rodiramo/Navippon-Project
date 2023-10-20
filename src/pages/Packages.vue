@@ -1,7 +1,7 @@
 
 <script>
 import { getPackages, getAllPackageIds } from "../services/packages";
-
+import { fetchUserData } from '../services/auth';
 import BaseLoader from '../components/BaseLoader.vue';
 
 export default {
@@ -9,19 +9,38 @@ export default {
   components: { BaseLoader },
   data() {
     return {
-      packageData: [], // Initialize packageData as an empty array
+      packageData: [],
+      isAdmin: false, // Initialize packageData as an empty array
     };
   },
-  async created() {
+  
+    async created() {
     try {
       const packageIds = await getAllPackageIds();
-
+      this.checkAdminStatus();
       const packagePromises = packageIds.map((id) => getPackages(id));
       this.packageData = await Promise.all(packagePromises);
     } catch (error) {
       console.error("Error fetching packages", error);
       this.packageData = []; 
     }
+  },
+  
+  methods: {
+    async checkAdminStatus() {
+      const userData = await fetchUserData(); 
+      if (userData && userData.role === 'admin') {
+        this.isAdmin = true;
+      }
+      },
+      methods: {
+  async editPackage(pkg) {
+    if (this.isAdmin) {
+      this.$router.push(`/edit-package/${pkg.id}`);
+    }
+  },
+}
+
   },
 };
 </script>
@@ -45,17 +64,45 @@ export default {
         </div>
         <div class="package-details">
           <h2>{{ pkg.name }}</h2>
-          <p class="price">${{ pkg.price }}</p>
-          <p>Location: {{ pkg.location }}</p>
-          <p>Description: {{ pkg.description }}</p>
-          <ul class="package-activities">
-            <li v-for="activity in pkg.activities" :key="activity">{{ activity }}</li>
-          </ul>
-          <ul class="package-categories">
-            <li class="category" v-for="category in pkg.categories" :key="category">{{ category }}</li>
-          </ul>
+          <dl>
+  <div class="price">
+    <dt>Price</dt>
+    <dd>${{ pkg.price }}</dd>
+  </div>
+  
+  <div class="location">
+    <dt>Location</dt>
+    <dd>{{ pkg.location }}</dd>
+  </div>
+  
+  <div class="description">
+    <dt>Description</dt>
+    <dd>{{ pkg.description }}</dd>
+  </div>
+  
+  <div class="package-activities">
+    <dt>Activities</dt>
+    <dd>
+      <ul>
+        <li v-for="activity in pkg.activities" :key="activity">{{ activity }}</li>
+      </ul>
+    </dd>
+  </div>
+</dl>
+
+       <ul class="package-categories">
+       <li class="category" v-for="category in pkg.categories" :key="category">{{ category }}</li>
+      </ul>
         </div>
+
+        <!-- Inside package card -->
+    <div class="package-actions">
+      <!-- Show the "Edit" button only for admin users -->
+      <button v-if="isAdmin" @click="editPackage(pkg)">Edit</button>
+    </div>
+
         </div>
+
       </div>
       <div v-else>   
          <BaseLoader />
