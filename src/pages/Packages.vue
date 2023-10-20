@@ -56,12 +56,13 @@ export default {
 
             <p>Check our destination packages, with activities that suit only you!</p>
            
-            <router-link class="btn" v-if="isAdmin" :to="`/create-package/${pkg.id}`">Create</router-link>
+            <router-link class="btn" v-if="isAdmin" :to="`/create-package`">Create</router-link>
 
         </section>
 
     <div class="container">
       <div class="d-flex justify-center text-center" v-if="packageData.length > 0">
+        
         <div v-for="pkg in packageData" :key="pkg.id"  class="package-card">
           <div class="package-image">
           <img :src="pkg.img" :alt="pkg.imgDescription">

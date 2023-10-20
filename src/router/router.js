@@ -19,7 +19,7 @@ const routes = [
     { path: '/user/:id',      component: UserProfile, meta: {requiresAuth: true}, },
     { path: '/user/:id/chat',  component: PrivateChat, meta: {requiresAuth: true}, },
     { path: '/edit-package/:id', component: EditPackage,  meta: {requiresAuth: true}, },
-    { path: '/create-package/:id', component: CreatePackage,  meta: {requiresAuth: true}, },
+    { path: '/create-package', component: CreatePackage,  meta: {requiresAuth: true}, },
     { path: '/log-in',         component: Login, },
     { path: '/register',       component: Register, },
 ];
