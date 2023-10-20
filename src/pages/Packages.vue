@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       packageData: [],
-      isAdmin: true, 
+      isAdmin: false, 
     };
   },
   

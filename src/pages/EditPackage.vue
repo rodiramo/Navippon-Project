@@ -1,26 +1,12 @@
-<template>
-    <div>
-      <h2>Edit Package</h2>
-      <form @submit.prevent="saveChanges">
-        <label for="name">Name:</label>
-        <input type="text" id="name" v-model="editedPackage.name" required>
+
+<script>
   
-        <label for="description">Description:</label>
-        <textarea id="description" v-model="editedPackage.description" required></textarea>
-  
-        <label for="price">Price:</label>
-        <input type="number" id="price" v-model="editedPackage.price" required>
-  
-        <!-- Other form fields for location, activities, etc. -->
-  
-        <button type="submit">Save Changes</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
+import BaseButton from '../components/BaseButton.vue';
+import BaseLabel from '../components/BaseLabel.vue';
+import BaseInput from '../components/BaseInput.vue';
 export default {
     name: 'EditPackage',
+    components: { BaseButton, BaseLabel, BaseInput },
   data() {
     return {
       editedPackage: {
@@ -41,7 +27,6 @@ export default {
         return;
       }
 
-      // Prepare the package data for the update
       const updatedPackage = {
         id: this.editedPackage.id, // Include the package ID if needed.
         name: this.editedPackage.name,
@@ -50,10 +35,8 @@ export default {
         // Include other fields here.
       };
 
-      // Example API URL, replace with your own
       const apiUrl = `/api/packages/${updatedPackage.id}`;
 
-      // Send a PATCH request to update the package
       try {
         const response = await fetch(apiUrl, {
           method: "PATCH",
@@ -64,20 +47,16 @@ export default {
         });
 
         if (response.ok) {
-          // Update was successful
           this.successMessage = "Package updated successfully!";
           this.error = null;
         } else {
-          // Handle errors from the server
           this.error = "Failed to update the package. Please try again later.";
         }
       } catch (error) {
-        // Handle network or other errors
         this.error = "An error occurred while updating the package.";
       }
     },
     validateForm() {
-      // Implement your validation logic here
       if (!this.editedPackage.name || !this.editedPackage.description || this.editedPackage.price <= 0) {
         return false;
       }
@@ -85,29 +64,46 @@ export default {
     },
   },
   created() {
-    // Fetch the package data from your backend and initialize editedPackage.
-    // Example fetch operation to get package data by ID (replace with your own API logic)
     const packageId = this.$route.params.id;
 
-    // Example API URL to fetch the package data by ID (replace with your own)
     const apiUrl = `/api/packages/${packageId}`;
 
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
-          // Handle errors, e.g., package not found
           throw new Error("Package not found");
         }
         return response.json();
       })
       .then((data) => {
-        // Set the retrieved package data in editedPackage
         this.editedPackage = data;
       })
       .catch((error) => {
-        // Handle errors (package not found, network issues, etc.)
         this.error = "An error occurred while fetching the package data.";
       });
   },
 };
 </script>
+
+
+<template>
+    <section class="hero-login">
+        <h1 class="mb-4 text-3xl">Edit Package</h1>
+
+    </section>
+    <div>
+      <form class="form d-flex flex-column container" @submit.prevent="saveChanges">
+        <BaseLabel for="name">Name:</BaseLabel>
+        <BaseInput type="text" id="name" v-model="editedPackage.name" required>
+        </BaseInput>
+        <BaseLabel for="description">Description:</BaseLabel>
+        <textarea id="description" v-model="editedPackage.description" required></textarea>
+  
+        <BaseLabel for="price">Price:</BaseLabel>
+        <BaseInput type="number" id="price" v-model="editedPackage.price" required>
+        </BaseInput>
+        <button class="btn w-50" type="submit">Save Changes</button>
+      </form>
+    </div>
+  </template>
+  

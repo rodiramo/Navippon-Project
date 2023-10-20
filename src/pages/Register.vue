@@ -36,7 +36,7 @@ export default {
     <section class="hero-login">
     <h1 class="mb-4 text-3xl">Register</h1>
     </section>
-    <form 
+    <form  class="container mb-5"
         action="#"
         @submit.prevent="handleSubmit"
     >
