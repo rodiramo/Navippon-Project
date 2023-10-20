@@ -8,12 +8,12 @@ export default {
     <section class="hero hero-about">
         <h1 class="mb-4 text-3xl">Abous Us</h1>
     </section>
-    <section class="container" id="about">
+    <section class="col-md-6 container" id="about">
         <h2 class="text-center h2 mb-3 mt-5">Sobre Nosotros</h2>
     
         <div class="clearfix mt-4">
 
-            <img src="/public/about-img.jpeg" class="col-md-6 float-md-end mb-3 ms-md-3" alt="...">
+            <img src="/public/about-img.jpeg" class="col-md-6 float-md-end mb-3 ms-md-3 img-fluid" alt="imagen">
 
             <p>
                 Bienvenidos a <strong>Navippon</strong>, tu guía para descubrir la belleza y la cultura de Japón.
@@ -37,40 +37,13 @@ export default {
       
     </section>
     
-    <section class="container mt-5">
+    <section class="container mt-5 mb-5">
         
         <h2 class="text-center h2">Lo que Ofrecemos</h2>
 
         <p class="container text-center">
          En Navipon, sabemos que cada viajero es único. Por eso, ofrecemos una amplia gama de servicios adaptados a tus preferencias. Desde itinerarios a medida que satisfacen tus intereses específicos, hasta experiencias culturales auténticas que te acercan a la esencia de Japón, estamos listos para superar tus expectativas. Nuestros alojamientos van desde lujosos hoteles en el corazón de la ciudad hasta tradicionales ryokans en hermosos entornos rurales.
         </p>
-
-        <div class="d-flex justify-content-center text-center mt-3 mb-3">
-
-            <div class="d-inline p-2  mx-2">
-               <img src="/recesion.png" alt="icono" width="30" height="30">
-            </div>
-            <div class="d-inline p-2  mx-2">
-                <p><strong>Viajes económicos</strong></p>
-            </div>
-
-            <div class="d-inline p-2  mx-2">
-                <img src="/diversidad.png"  class="justify-content-center" alt="icono" width="30" height="30">
-            </div>
-
-            <div class="d-inline p-2  mx-2">
-                <p><strong>Viajes en comunidad</strong></p>
-            </div>
-
-            <div class="d-inline p-2  mx-2">
-                <img src="/calendario.png" alt="icono" width="30" height="30">
-            </div>
-
-            <div class="d-inline p-2  mx-2">
-                <p><strong>Personaliza tu viaje</strong></p>
-            </div>
-
-        </div>
         
     </section>
 
