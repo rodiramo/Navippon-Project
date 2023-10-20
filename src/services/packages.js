@@ -9,6 +9,7 @@ import { db } from "./firebase";
 export async function getPackages(id) {
   try {
     const snapshot = await getDoc(doc(db, `packages/${id}`));
+  
     const data = snapshot.data();
     if (snapshot.exists() && data) {
       return {
@@ -31,10 +32,7 @@ export async function getPackages(id) {
   }
 }
 
-/**
- * Get all package IDs 
- * @returns {Promise<Array<string>>} 
- */
+
 export async function getAllPackageIds() {
   const packageIds = [];
   try {
@@ -50,18 +48,15 @@ export async function getAllPackageIds() {
 }
 
 
+
 /**
  * Create package
  * 
  * @param {string} id 
- * @param {{}} data 
+ * @param {{ name: string, price: number, description: string, activities: string[], categories: string[] }} data 
  * @returns {Promise}
- * 
  */
-
 export async function createPackage(id, data) {
-   
-  const userRef = doc(db, `/package/${id}`);
-  return setDoc(userRef, data);
+  const packageRef = doc(db, `packages/${id}`);
+  return setDoc(packageRef, data);
 }
-

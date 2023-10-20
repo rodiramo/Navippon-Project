@@ -39,12 +39,11 @@ subscribeToAuth(newUser => {
     user = {...newUser}
 });
 
-router.beforeEach((to, from) => {
-    if(
-        user.id === null &&
-        to.meta?.requiresAuth
-    ) {
-        return {path: '/log-in'}
+router.beforeEach((to, from, next) => {
+    if (user.id === null && to.meta?.requiresAuth) {
+        next({ path: '/log-in' });
+    } else {
+        next(); 
     }
 });
 
