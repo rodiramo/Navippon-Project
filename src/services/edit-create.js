@@ -1,5 +1,6 @@
 import { doc, setDoc, getDoc, updateDoc, deleteField } from "firebase/firestore";
 import { db } from "./firebase";
+
 /**
  * Generate a unique ID.
  * @returns {string} A unique identifier.
@@ -8,7 +9,8 @@ function generateUniqueId() {
     const timestamp = Date.now().toString(36);
     const randomNumber = Math.random().toString(36).substr(2, 5);
     return `${timestamp}-${randomNumber}`;
-  }
+}
+
 /**
  * Create a package
  * 
@@ -17,7 +19,6 @@ function generateUniqueId() {
  */
 export async function createPackage({ name, price, description, activities, categories }) {
     try {
-
         const id = generateUniqueId();
 
         // Create the package in Firebase 
@@ -42,7 +43,6 @@ export async function createPackage({ name, price, description, activities, cate
     }
 }
 
-
 /**
  * Edit a package
  * 
@@ -52,7 +52,6 @@ export async function createPackage({ name, price, description, activities, cate
  */
 export async function editPackage(packageId, updatedData) {
     try {
-
         const packageRef = doc(db, "packages", packageId);
         const packageDoc = await getDoc(packageRef);
 
@@ -63,8 +62,7 @@ export async function editPackage(packageId, updatedData) {
         const updateData = {
             ...updatedData,
         };
-
-      
+        console.log('updateData:', updateData);
         await updateDoc(packageRef, updateData);
 
         return updateData;

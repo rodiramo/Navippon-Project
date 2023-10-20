@@ -24,10 +24,16 @@ export default {
   },
   methods: {
     async saveChanges() {
-      editPackage({
-        ...this.editedPackage,
-      })
-        .then((packageId) => {
+      const updateData = {
+        name: this.editedPackage.name,
+        price: this.editedPackage.price,
+        description: this.editedPackage.description,
+        activities: this.editedPackage.activities,
+        categories: this.editedPackage.categories,
+      };
+
+      editPackage(this.editedPackage.id, updateData)
+        .then(() => {
           this.$router.push({ path: '/packages' });
         })
         .catch((error) => {
@@ -36,16 +42,17 @@ export default {
     },
   },
   created() {
-    const packageId = this.$route.params.id;
-    getPackages(packageId) 
-      .then((data) => {
-     
-        this.editedPackage = data;
-      })
-      .catch((error) => {
-        this.error = 'An error occurred while fetching the package data.';
-      });
-  },
+  const packageId = this.$route.params.id;
+  console.log('packageId:', packageId); 
+  getPackages(packageId) 
+    .then((data) => {
+      this.editedPackage = data;
+    })
+    .catch((error) => {
+      this.error = 'An error occurred while fetching the package data.';
+    });
+},
+
 };
 </script>
 

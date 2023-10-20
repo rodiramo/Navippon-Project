@@ -73,6 +73,7 @@ async function getPrivateChatDocument({user1, user2}) {
         [user1]: true,
         [user2]: true,
     }
+    
     const chatRef = collection(db, 'private-chats');
     const q = query(chatRef, where('users', '==', users));
   
