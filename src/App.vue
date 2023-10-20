@@ -13,9 +13,9 @@ export default {
         }
     },
     methods: {
-        toggleMobileMenu() {
-            this.isMobileMenuOpen = !this.isMobileMenuOpen;
-        },
+        toggleMobileMenu(open) {
+        this.isMobileMenuOpen = open !== undefined ? open : !this.isMobileMenuOpen;
+    },
         handleLogout() {
             logout()
             .then(user => {

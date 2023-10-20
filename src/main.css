@@ -151,7 +151,8 @@ h1 {
     color: black;
 }
 .loader {
-    display: inline-block;
+    display: block;
+    margin: 2rem auto;
     width: 80px;
     height: 80px;
 }
@@ -163,13 +164,25 @@ div .width{
     display: block;
     width: 64px;
     height: 64px;
-    margin: 8px;
+    margin: 8px auto;
     border-radius: 50%;
-    border: 6px solid #512828;
-    border-color: #999 transparent #999 transparent;
+    border: 6px solid #ab2626;
+    border-color: #d60e0e transparent #cd1313 transparent;
     animation: loader 1.2s linear infinite;
 }
 
+.hero-login{
+  height: 30vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: black;
+}
+.form-login{
+  width: 80%;
+  margin: 0 auto;
+
+}
 .logo-header{
     width: 5rem;
 }

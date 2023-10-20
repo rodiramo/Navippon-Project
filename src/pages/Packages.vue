@@ -2,8 +2,11 @@
 <script>
 import { getPackages, getAllPackageIds } from "../services/packages";
 
+import BaseLoader from '../components/BaseLoader.vue';
+
 export default {
   name: 'Packages',
+  components: { BaseLoader },
   data() {
     return {
       packageData: [], // Initialize packageData as an empty array
@@ -54,8 +57,8 @@ export default {
         </div>
         </div>
       </div>
-      <div v-else>
-        Loading...
+      <div v-else>   
+         <BaseLoader />
       </div>
     </div>
 </template>

@@ -8,7 +8,8 @@ export default {
 </script>
 
 <template>
+    <section class="hero-login">
     <h1 class="mb-4 text-3xl">Log In</h1>
-
+    </section>
     <LoginForm />
 </template>

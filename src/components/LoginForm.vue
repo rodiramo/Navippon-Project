@@ -37,7 +37,7 @@ export default {
 </script>
 
 <template>
-    <form 
+    <form class="form-login"
         action="#"
         @submit.prevent="handleLogin"
     >
