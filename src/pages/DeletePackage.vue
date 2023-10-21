@@ -32,7 +32,10 @@ export default {
       <div class="m-4">
       <button class="btn m-4" @click="deletePackage">Yes, Delete</button>
       <button class="btn m-4" @click="cancelDelete">Cancel</button>
+
       </div>
     </div>
-  </div>
+</div>s
+
+  
 </template>

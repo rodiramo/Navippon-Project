@@ -71,22 +71,25 @@ export default {
 
 <!-- Your template section remains unchanged -->
 <template>
-    <div>
-      <template v-if="!loadingUser">
+
+    <template v-if="!loadingProfile" class="d-flex justify-content-center">
+        
         <section class="hero-login">
-          <h1 class="mb-4 text-3xl">{{ userProfile.name }}'s Profile</h1>
+        <h1 class="mb-4 h1"> {{ userProfile.name }}'s Profile</h1>
         </section>
-        <div class="container">
-          <dl>
-            <dt>Email</dt>
-            <dd>{{ userProfile.email }}</dd>
-            <dt>Interests</dt>
-            <dd>{{ userProfile.interests }}</dd>
-            <dt>Role</dt>
-            <dd>{{ userProfile.role }}</dd>
-          </dl>
-  
-          <router-link class="btn" :to="`/user/${userProfile.id}/chat`">Start Private Chat</router-link>
+        <div class="d-flex justify-content-center">
+         <dl>
+         <dt>Email</dt>
+         <dd>{{userProfile.email}}</dd>
+         <dt>Interests</dt>
+         <dd>{{userProfile.interests}}</dd>
+         <dt>Role</dt>
+         <dd>{{userProfile.role}}</dd>
+        </dl>   
+        <router-link
+            class="btn mx-4"
+            :to="`/user/${userProfile.id}/chat`"
+        >Start Private Chat</router-link>
         </div>
         <form action="#" class="mb-4 form-profile" @submit.prevent="handleEdit">
            <h3 class="text-center h3">Change Profile Name</h3> 
@@ -102,5 +105,5 @@ export default {
       <template v-else>
         <BaseLoader></BaseLoader>
       </template>
-    </div>
+    
     </template>

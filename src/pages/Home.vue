@@ -39,7 +39,6 @@ export default {
     <section class="container mb-4 w-80">
 
         <h2 class="mb-4 text-center"><strong>Why choose Navippon?</strong></h2>
-        
        <p class="mb-2">There are several compelling reasons to choose Navippon:</p>
 
        <ul>
