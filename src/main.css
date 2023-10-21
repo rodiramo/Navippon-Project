@@ -35,7 +35,9 @@
   color: white;
   padding-bottom: 2rem;
 }
-
+#about{
+  width: 80%;
+}
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -213,18 +215,49 @@ div .width{
     transform: translateY(-200%);
     transition: transform 0.3s ease-in-out;
   }
-  
+  .message-container{
+    border-radius: 2rem;
+  }
+  textarea {
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+  }
+  .container-sendmsg{
+    background-color: #b9b5b569;
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+  .form-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-profile input{
+    border: 1px solid #d3d3d3;
+    border-radius: 1rem;
+    margin-left: 1rem;
+  }
   .mobile-menu.open {
     transform: translateY(0);    
     display: block;
     padding: 2rem;
     border-radius: 0 0 6rem 6rem;
   }
-  
+  .message-container{
+    max-height: 400px; 
+    overflow-y: auto;
+  }
   .mobile-menu li {
     padding: 1rem;
   }
- 
+  .link{
+    color: blue;
+    text-decoration: underline;
+  }
+ .link-delete{
+  color: red;
+  text-decoration: underline;
+ }
   @media (min-width: 768px) {
     .nav-object{
       justify-content: center;

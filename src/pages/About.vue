@@ -35,11 +35,11 @@ export default {
       
     </section>
     
-    <section class="container mt-5 mb-5">
+    <section class="container mt-5 mb-5 w-80">
         
         <h2 class="text-center h2">What We Offer</h2>
 
-        <p class="container text-center">
+        <p class=" text-center">
             At <strong> Navippon</strong>, we understand that every traveler is unique. That's why we offer a wide range of services tailored to your preferences. From custom itineraries that cater to your specific interests to authentic cultural experiences that bring you closer to the essence of Japan, we are ready to exceed your expectations. Our accommodations range from luxurious city-center hotels to traditional ryokans in beautiful rural settings. 
         </p>
         

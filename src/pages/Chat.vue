@@ -68,8 +68,9 @@ export default {
             <p>Chat with other users</p>
            
         </section>
-    <div class="d-flex justify-content-center align-items-center ">
-        <div class=" w-4/6 container mx-3 my-3 border rounded border-dark">
+    <section class="flex flex-col min-h-[300px] p-4 border mb-4">
+        <h2 class="h2">Messages</h2>
+        <div class="message-container mx-3 my-3 border rounded border-dark">
             <template
                 v-if="loadingMessages"
             >
@@ -80,9 +81,10 @@ export default {
             >
                 <div 
                     v-for="message in messages"
-                    class="mb-2"
+                    class="max-w-[66%] p-2 rounded mb-2"
                 >
                     <div>
+                        <div>{{ dateToString(message.created_at) || 'Sending...' }}</div>
                         <b>User:</b> 
                         <router-link 
                             class="ml-1 text-blue-600 underline"
@@ -90,14 +92,12 @@ export default {
                         >{{ message.user }}</router-link>
                     </div>
                     <div><b>Message:</b> {{ message.message }}</div>
-                    <div class="text-right">{{ dateToString(message.created_at) || 'Sending...' }}</div>
                 </div>
             </template>
         </div>
 
         <form  
-            class="w-2/6 mx-5 px-5 border-dark border rounded mt-3 pb-3"
-            action="#" 
+            class=""
             @submit.prevent="sendMessage"
         >
             <div class="mb-3">
@@ -121,5 +121,5 @@ export default {
             <BaseButton />
          
         </form>
-    </div>
+    </section>
 </template>

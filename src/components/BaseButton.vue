@@ -6,7 +6,7 @@ export default {
     props: {
         color: {
             type: String,
-            default: 'blue',
+            default: 'red',
         },
         loading: {
             type: Boolean,
@@ -23,7 +23,7 @@ export default {
                     return 'bg-red-600 text-white hover:bg-red-500 focus:bg-red-500 active:bg-red-700';
                     break;
                 default:
-                    return 'bg-blue-600 text-white hover:bg-blue-500 focus:bg-blue-500 active:bg-blue-700';
+                    return 'bg-red-600 text-white hover:bg-red-500 focus:bg-red-500 active:bg-red-700';
                     break;
             }
         }
@@ -35,7 +35,7 @@ export default {
 <template>
     <button
         type="submit" 
-        :class="`transition w-full mb-3 mt-4 p-2 rounded ${bgColors}`"
+        :class="`transition w-full mb-3 mt-5 w-50 mt-4 p-2 btn rounded ${bgColors}`"
     >
         <slot 
             v-if="!loading"

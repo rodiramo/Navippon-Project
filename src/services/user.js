@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
 /**
@@ -38,4 +38,18 @@ export async function createUserProfile(id, data) {
    
     const userRef = doc(db, `/users/${id}`);
     return setDoc(userRef, data);
+}
+
+
+/**
+ * 
+ * @param {string} id 
+ * @param {{name: string|null}} data 
+ * @returns {Promise}
+ */
+export async function editUserProfile(id, data) {
+    return updateDoc(
+        doc(db, `/users/${id}`),
+        data
+    );
 }

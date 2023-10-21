@@ -68,7 +68,7 @@ export default {
     <div class="container">
       <div class="d-flex justify-center text-center container-packages" v-if="packageData.length > 0">
         
-        <div v-for="pkg in packageData" :key="pkg.id"  class="package-card">
+        <article v-for="pkg in packageData" :key="pkg.id"  class="package-card">
       <!--   <div class="package-image">
           <img :src="pkg.img" :alt="pkg.imgDescription">
         </div>-->
@@ -80,38 +80,38 @@ export default {
           <dd>${{ pkg.price }}</dd>
         </div>
   
-  <div class="location">
-    <dt>Location</dt>
-    <dd>{{ pkg.location }}</dd>
-  </div>
-  
-  <div class="description">
-    <dt>Description</dt>
-    <dd>{{ pkg.description }}</dd>
-  </div>
-  
-  <div class="package-activities">
-    <dt>Activities</dt>
-    <dd>
-      <ul>
-        <li v-for="activity in pkg.activities" :key="activity">{{ activity }}</li>
-      </ul>
-    </dd>
-  </div>
-</dl>
-
+          <div class="location">
+            <dt>Location</dt>
+            <dd>{{ pkg.location }}</dd>
+          </div>
+          
+          <div class="description">
+            <dt>Description</dt>
+            <dd>{{ pkg.description }}</dd>
+          </div>
+          
+          <div class="package-activities">
+            <dt>Activities</dt>
+            <dd>
+              <ul>
+                <li v-for="activity in pkg.activities" :key="activity">{{ activity }}</li>
+              </ul>
+            </dd>
+          </div>
+        </dl>
+        
        <ul class="package-categories">
        <li class="category" v-for="category in pkg.categories" :key="category">{{ category }}</li>
-      </ul>
+        </ul>
         </div>
 
-    <div class="package-actions">
-      <router-link class="mr-2 link" v-if="isAdmin" :to="`/edit-package/${pkg.id}`">Edit</router-link>
-      <router-link class="mr-2 link-delete" v-if="isAdmin" :to="`/delete-package/${pkg.id}`">Delete</router-link>
-   
-    </div>
+      <div class="package-actions">
+        <router-link class="mr-2 link" v-if="isAdmin" :to="`/edit-package/${pkg.id}`">Edit</router-link>
+        <router-link class="mr-2 link-delete" v-if="isAdmin" :to="`/delete-package/${pkg.id}`">Delete</router-link>
+      
+      </div>
 
-        </div>
+  </article>
 
       </div>
       <div v-else>   

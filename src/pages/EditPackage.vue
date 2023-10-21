@@ -81,7 +81,7 @@ export default {
     <BaseInput type="text" id="activities" v-model="editedPackage.activities" required></BaseInput>
 
     <BaseLabel for="categories">Categories* (Comma-separated):</BaseLabel>
-    <BaseInput type="text" id="categories" v-model="editedPackage.categories" required></BaseInput>
+    <BaseInput type="text" id="categories" class="mb-4" v-model="editedPackage.categories" required></BaseInput>
 
       <BaseButton>Save Changes</BaseButton>
     </form>

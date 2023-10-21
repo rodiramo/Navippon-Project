@@ -24,13 +24,15 @@ export default {
 <template>
   <div>
     <section class="hero-login">
-      <h1 class="mb-4 text-3xl">Delete Package</h1>
+      <h1 class="mb-4 text-4xl">Delete Package</h1>
     </section>
-    <div>
-      <h2>Confirm Deletion</h2>
+    <div class="d-flex flex-column align-items-center" >
+      <h2 class="h3">Confirm Deletion</h2>
       <p>Are you sure you want to delete this package?</p>
-      <button @click="deletePackage">Yes, Delete</button>
-      <button @click="cancelDelete">Cancel</button>
+      <div class="m-4">
+      <button class="btn m-4" @click="deletePackage">Yes, Delete</button>
+      <button class="btn m-4" @click="cancelDelete">Cancel</button>
+      </div>
     </div>
   </div>
 </template>

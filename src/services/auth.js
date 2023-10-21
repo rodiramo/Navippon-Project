@@ -1,9 +1,9 @@
 import { createUserWithEmailAndPassword, 
          onAuthStateChanged, 
          signInWithEmailAndPassword, 
-         signOut } from "firebase/auth"
+         signOut, updateProfile } from "firebase/auth"
 import { auth } from "./firebase"
-import { createUserProfile } from "./user";
+import { createUserProfile, editUserProfile } from "./user";
 
 let userData = {
     id: null,
@@ -125,6 +125,34 @@ export function login({email, password}) {
 export function logout() {
 
     return signOut(auth);
+}
+
+/**
+ * @param {{name: string|null}} data
+ * @return {Promise}
+ */
+
+export async function editUser({name}) {
+    try {
+        const promiseAuth = updateProfile(auth.currentUser, {
+            name
+        });
+
+        const promiseProfile = editUserProfile(userData.id, {
+            name
+        });
+
+        userData = {
+            ...userData,
+            name,
+        }
+        localStorage.setItem('user', JSON.stringify(userData));
+        notifyAll();
+
+        return Promise.all([promiseAuth, promiseProfile]);
+    } catch (error) {
+        throw error;
+    }
 }
 
 /**
