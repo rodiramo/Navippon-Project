@@ -103,11 +103,11 @@ export default {
        <ul class="package-categories">
        <li class="category" v-for="category in pkg.categories" :key="category">{{ category }}</li>
       </ul>
-        </div>
+      </div>
 
-    <div class="package-actions">
-      <router-link class="mr-2 link" v-if="isAdmin" :to="`/edit-package/${pkg.id}`">Edit</router-link>
-      <router-link class="mr-2 link-delete" v-if="isAdmin" :to="`/delete-package/${pkg.id}`">Delete</router-link>
+    <div class="package-actions border-top pt-3 pb-3">
+      <router-link class="mr-2 link btn btna" v-if="isAdmin" :to="`/edit-package/${pkg.id}`">Edit</router-link>
+      <router-link class="mr-2 btn btna" v-if="isAdmin" :to="`/delete-package/${pkg.id}`">Delete</router-link>
    
     </div>
 

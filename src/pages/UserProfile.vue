@@ -26,11 +26,12 @@ export default {
 </script>
 
 <template>
-    <template v-if="!loadingProfile">
+    <template v-if="!loadingProfile" class="d-flex justify-content-center">
+        
         <section class="hero-login">
-        <h1 class="mb-4 text-3xl"> {{ userProfile.name }}'s Profile</h1>
+        <h1 class="mb-4 h1"> {{ userProfile.name }}'s Profile</h1>
         </section>
-        <div class="container">
+        <div class="d-flex justify-content-center">
          <dl>
          <dt>Email</dt>
          <dd>{{userProfile.email}}</dd>
@@ -40,7 +41,7 @@ export default {
          <dd>{{userProfile.role}}</dd>
         </dl>   
         <router-link
-            class="btn"
+            class="btn mx-4"
             :to="`/user/${userProfile.id}/chat`"
         >Start Private Chat</router-link>
         </div>
