@@ -65,11 +65,8 @@ export default {
             
             <h1><span>Chat</span></h1>
 
-            <p>Explore Japan in a way that fits you</p>
-            <p>Check out all our packages for making your trip perfect!</p>
+            <p>Chat with other users</p>
            
-            <router-link to="/packages" class="btn">Packages</router-link>
-
         </section>
     <div class="d-flex justify-content-center align-items-center ">
         <div class=" w-4/6 container mx-3 my-3 border rounded border-dark">

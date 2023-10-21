@@ -34,8 +34,8 @@ export default {
 
 <template>
     <button
-        type="submit"
-        :class="`transition w-full p-2 rounded ${bgColors}`"
+        type="submit" 
+        :class="`transition w-full mb-3 mt-4 p-2 rounded ${bgColors}`"
     >
         <slot 
             v-if="!loading"

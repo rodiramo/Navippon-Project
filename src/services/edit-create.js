@@ -1,4 +1,4 @@
-import { doc, setDoc, getDoc, updateDoc, deleteField } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc, deleteField, deleteDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
 /**
@@ -14,10 +14,10 @@ function generateUniqueId() {
 /**
  * Create a package
  * 
- * @param {{name: string, price: number, description: string, activities: string[], categories: string[]}} packageData
+ * @param {{name: string, price: number,  location: string, description: string, activities: string[], categories: string[]}} packageData
  * @returns {Promise}
  */
-export async function createPackage({ name, price, description, activities, categories }) {
+export async function createPackage({ name, price,location, description, activities, categories }) {
     try {
         const id = generateUniqueId();
 
@@ -26,6 +26,7 @@ export async function createPackage({ name, price, description, activities, cate
         const packageData = {
             name,
             price,
+            location,
             description,
             activities,
             categories,
@@ -47,7 +48,7 @@ export async function createPackage({ name, price, description, activities, cate
  * Edit a package
  * 
  * @param {string} packageId - The ID of the package to edit.
- * @param {{name: string, price: number, description: string, activities: string[], categories: string[]}} updatedData
+ * @param {{name: string, price: number, location: string. description: string, activities: string[], categories: string[]}} updatedData
  * @returns {Promise}
  */
 export async function editPackage(packageId, updatedData) {
@@ -71,6 +72,31 @@ export async function editPackage(packageId, updatedData) {
         return {
             code: error.code,
             message: error.message,
+        };
+    }
+}
+
+
+
+export async function deletePackage(packageId) {
+    try {
+        const packageRef = doc(db, "packages", packageId);
+        const packageDoc = await getDoc(packageRef);
+
+        if (!packageDoc.exists()) {
+            return {
+                error: "Package not found",
+            };
+        }
+
+        // Delete the entire document
+        await deleteDoc(packageRef);
+
+        return { success: true };
+    } catch (error) {
+        console.error("Error during package delete:", error);
+        return {
+            error: error.message,
         };
     }
 }

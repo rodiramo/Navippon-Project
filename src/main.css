@@ -7,7 +7,10 @@
   display: grid;
   grid-template-rows: 56px 1fr 75px;
 }
-
+.btn{
+  border-radius: 2rem !important;
+  margin-top: 0 !important;
+}
 .hero {
   text-align: center;
   margin-top: 10px;
@@ -42,7 +45,11 @@
   border-radius: 5px;
   margin-top: 20px;
 }
-
+.container-packages{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .destinations {
   text-align: center;
   margin: 40px 0;
@@ -78,6 +85,7 @@
   border-radius: 8px;
   margin: 10px;
   padding: 10px;
+  width: 500px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   max-width: 300px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -220,6 +228,9 @@ div .width{
   @media (min-width: 768px) {
     .nav-object{
       justify-content: center;
+    }
+    .container-packages{
+      flex-direction: row;
     }
     .mobile-menu {
         z-index: auto; 

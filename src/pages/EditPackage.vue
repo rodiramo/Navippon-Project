@@ -13,6 +13,7 @@ export default {
       editedPackage: {
         id: null,
         name: '',
+        location: '',
         description: '',
         price: 0,
         activities: [], 
@@ -26,10 +27,11 @@ export default {
     async saveChanges() {
       const updateData = {
         name: this.editedPackage.name,
-        price: this.editedPackage.price,
+        price: this.editedPackage.price,        
+        location: this.editedPackage.location,
         description: this.editedPackage.description,
-        activities: this.editedPackage.activities,
-        categories: this.editedPackage.categories,
+        activities: this.editedPackage.activities.split(',').map(activity => activity.trim()),
+        categories: this.editedPackage.categories.split(',').map(category => category.trim()),
       };
 
       editPackage(this.editedPackage.id, updateData)
@@ -69,8 +71,17 @@ export default {
       <BaseLabel for="description">Description*:</BaseLabel>
       <textarea id="description" v-model="editedPackage.description" required></textarea>
 
+      <BaseLabel for="location">Location*:</BaseLabel>
+        <BaseInput id="location" v-model="editedPackage.location" required></BaseInput>
+
       <BaseLabel for="price">Price*:</BaseLabel>
       <BaseInput class="mb-4" type="number" id="price" v-model="editedPackage.price" required></BaseInput>
+
+      <BaseLabel for="activities">Activities* (Comma-separated):</BaseLabel>
+    <BaseInput type="text" id="activities" v-model="editedPackage.activities" required></BaseInput>
+
+    <BaseLabel for="categories">Categories* (Comma-separated):</BaseLabel>
+    <BaseInput type="text" id="categories" v-model="editedPackage.categories" required></BaseInput>
 
       <BaseButton>Save Changes</BaseButton>
     </form>

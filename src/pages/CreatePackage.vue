@@ -12,6 +12,7 @@ export default {
       createPackage: {
         name: '',
         description: '',
+        location: '',
         price: 0,
         activities: [],
         categories: [],
@@ -22,16 +23,15 @@ export default {
   },
   methods: {
     async saveChanges() {
-      // Prepare the package data
       const packageData = {
         name: this.createPackage.name,
         price: this.createPackage.price,
+        location: this.createPackage.location,
         description: this.createPackage.description,
-        activities: this.createPackage.activities,
-        categories: this.createPackage.categories,
+        activities: this.createPackage.activities.split(',').map(activity => activity.trim()),
+        categories: this.createPackage.categories.split(',').map(category => category.trim()),
       };
 
-      // Call the createPackage function without an ID
       createPackage(packageData)
         .then(() => {
           this.$router.push({ path: '/packages' });
@@ -55,9 +55,18 @@ export default {
 
     <BaseLabel for="description">Description*:</BaseLabel>
     <textarea id="description" v-model="createPackage.description" required></textarea>
+   
+    <BaseLabel for="location">Location*:</BaseLabel>
+    <BaseInput id="location" v-model="createPackage.location" required></BaseInput>
 
     <BaseLabel for="price">Price*:</BaseLabel>
     <BaseInput class="mb-4" type="number" id="price" v-model="createPackage.price" required></BaseInput>
+
+    <BaseLabel for="activities">Activities* (Comma-separated):</BaseLabel>
+    <BaseInput type="text" id="activities" v-model="createPackage.activities" required></BaseInput>
+
+    <BaseLabel for="categories">Categories* (Comma-separated):</BaseLabel>
+    <BaseInput type="text" id="categories" v-model="createPackage.categories" required></BaseInput>
 
     <BaseButton>Save Changes</BaseButton>
   </form>

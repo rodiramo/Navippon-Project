@@ -8,6 +8,7 @@ import UserProfile from '../pages/UserProfile.vue';
 import PrivateChat from '../pages/PrivateChat.vue';
 import CreatePackage from '../pages/CreatePackage.vue';
 import EditPackage from '../pages/EditPackage.vue';
+import DeletePackage from '../pages/DeletePackage.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { subscribeToAuth } from '../services/auth';
 
@@ -20,6 +21,7 @@ const routes = [
     { path: '/user/:id/chat',  component: PrivateChat, meta: {requiresAuth: true}, },
     { path: '/edit-package/:id', component: EditPackage,  meta: {requiresAuth: true}, },
     { path: '/create-package', component: CreatePackage,  meta: {requiresAuth: true}, },
+    { path: '/delete-package/:id', component: DeletePackage,  meta: {requiresAuth: true}, },
     { path: '/log-in',         component: Login, },
     { path: '/register',       component: Register, },
 ];

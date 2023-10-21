@@ -53,7 +53,7 @@ export async function getAllPackageIds() {
  * Create package
  * 
  * @param {string} id 
- * @param {{ name: string, price: number, description: string, activities: string[], categories: string[] }} data 
+ * @param {{ name: string, price: number, description: string, location: string,activities: string[], categories: string[] }} data 
  * @returns {Promise}
  */
 export async function createPackage(id, data) {
