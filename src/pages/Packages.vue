@@ -27,7 +27,7 @@ export default {
 
         <section class="hero hero-home">
             
-            <h1><span>Our Packages</span></h1>
+            <h1><span>Our Activities</span></h1>
 
             <p>Check our destination packages, with activities that suit only you!</p>
            
