@@ -66,10 +66,12 @@ export default {
 
 <template>
     <template v-if="!loadingProfile">
-        <h1 class="mb-4 text-3xl">Private Chat with {{ userProfile.email }}</h1>
-
+       <div class="container-sendmsg">
+        <section class="hero-login">
+        <h1 class="mb-4 text-3xl">Private Chat with {{ userProfile.name }}</h1>
+        </section>
         <section
-            class="flex flex-col min-h-[300px] p-4 border mb-4"
+            class="flex flex-col  bg-white message-container container min-h-[300px] p-4 border mb-4"
         >
             <h2 class="sr-only">Messages</h2>
             
@@ -80,7 +82,7 @@ export default {
                     class="max-w-[66%] p-2 rounded mb-2"
                     :class="{
                         'self-start': message.userId !== userAuth.id,
-                        'bg-green-300': message.userId !== userAuth.id,
+                        'bg-blue-300': message.userId !== userAuth.id,
                         'self-end': message.userId === userAuth.id,
                         'bg-slate-300': message.userId === userAuth.id,
                     }"
@@ -91,8 +93,8 @@ export default {
             </template>
         </section>
 
-        <section>
-            <h2 class="sr-only">Send Message</h2>
+        <section class="container container-sendmsg">
+            <h2 class="sr-only container">Send Message</h2>
             <form 
                 action="#"
                 class="flex gap-2"
@@ -103,13 +105,14 @@ export default {
                     class="sr-only"
                 >Message</BaseLabel>
                 <textarea 
-                    class="w-11/12 py-1.5 px-2 border border-gray-400 rounded"
+                    class="w-11/12 py-1.5 mb-4"
                     id="message"
                     v-model="newMessage.message"
                 ></textarea>
-                <BaseButton class="w-1/12">Send</BaseButton>
+                <BaseButton>Send</BaseButton>
             </form>
         </section>
+        </div>
     </template>
     <template v-else>
         <BaseLoader />

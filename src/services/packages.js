@@ -1,14 +1,15 @@
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
+import { doc, getDoc, getDocs, setDoc, collection } from "firebase/firestore";
 import { db } from "./firebase";
 
 /**
- * Get a single package by its ID from Firebase Firestore.
- * @param {string} id - The ID of the package to fetch.
+ * 
+ * @param {string} id 
  * @returns {Promise<{ id: string, name: string, activities: Array, categories: Array, description: string, location: string, price: number, img: string, imgDescription: string } | null>} The package data or null if not found.
  */
 export async function getPackages(id) {
   try {
     const snapshot = await getDoc(doc(db, `packages/${id}`));
+  
     const data = snapshot.data();
     if (snapshot.exists() && data) {
       return {
@@ -23,7 +24,6 @@ export async function getPackages(id) {
         imgDescription: data.imgDescription || "",
       };
     } else {
-      // Package not found
       return null;
     }
   } catch (error) {
@@ -32,10 +32,7 @@ export async function getPackages(id) {
   }
 }
 
-/**
- * Get all package IDs from Firebase Firestore.
- * @returns {Promise<Array<string>>} An array of package IDs.
- */
+
 export async function getAllPackageIds() {
   const packageIds = [];
   try {
@@ -48,4 +45,18 @@ export async function getAllPackageIds() {
     console.error("Error fetching package IDs", error);
     return [];
   }
+}
+
+
+
+/**
+ * Create package
+ * 
+ * @param {string} id 
+ * @param {{ name: string, price: number, description: string, location: string,activities: string[], categories: string[] }} data 
+ * @returns {Promise}
+ */
+export async function createPackage(id, data) {
+  const packageRef = doc(db, `packages/${id}`);
+  return setDoc(packageRef, data);
 }

@@ -65,14 +65,12 @@ export default {
             
             <h1><span>Chat</span></h1>
 
-            <p>Explore Japan in a way that fits you</p>
-            <p>Check out all our packages for making your trip perfect!</p>
+            <p>Chat with other users</p>
            
-            <router-link to="/packages" class="btn">Packages</router-link>
-
         </section>
-    <div class="flex justify-between gap-4">
-        <div class="w-4/6">
+    <section class="flex flex-col min-h-[300px] p-4 border mb-4">
+        <h2 class="h2">Messages</h2>
+        <div class="message-container mx-3 my-3 border rounded border-dark">
             <template
                 v-if="loadingMessages"
             >
@@ -83,9 +81,10 @@ export default {
             >
                 <div 
                     v-for="message in messages"
-                    class="mb-2"
+                    class="max-w-[66%] p-2 rounded mb-2"
                 >
                     <div>
+                        <div>{{ dateToString(message.created_at) || 'Sending...' }}</div>
                         <b>User:</b> 
                         <router-link 
                             class="ml-1 text-blue-600 underline"
@@ -93,30 +92,34 @@ export default {
                         >{{ message.user }}</router-link>
                     </div>
                     <div><b>Message:</b> {{ message.message }}</div>
-                    <div class="text-right">{{ dateToString(message.created_at) || 'Sending...' }}</div>
                 </div>
             </template>
         </div>
 
-        <form 
-            class="w-2/6"
-            action="#" 
+        <form  
+            class=""
             @submit.prevent="sendMessage"
         >
             <div class="mb-3">
-                <span class="block mb-1">User</span>
-                <p>{{ user.email }}</p>
+                <span class="block text-primary">User</span><p>{{ user.email }}</p>
             </div>
-            <div class="mb-3">
-                <BaseLabel for="message">Message</BaseLabel>
-                <textarea 
-                    class="w-full py-1.5 px-2 border border-gray-400 rounded"
-                    id="message"
-                    v-model="newMessage.message"
-                ></textarea>
+            <div class="example-container">
+                <div class="example-row mb-4">
+                    <div class="example-content-main">
+                        <BaseLabel for="message">Message</BaseLabel>
+                    </div>
+                    <div class="example-content-dark mb-3">
+                        <textarea class="w-full py-1.5 px-2 rounded border border   border-primary-400 rounded"
+                        id="message"
+                        v-model="newMessage.message"
+                    >   </textarea>
+                    </div>
+                </div>
             </div>
+            
+          
             <BaseButton />
          
         </form>
-    </div>
+    </section>
 </template>

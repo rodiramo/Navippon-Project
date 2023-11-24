@@ -7,7 +7,10 @@
   display: grid;
   grid-template-rows: 56px 1fr 75px;
 }
-
+.btn{
+  border-radius: 2rem !important;
+  margin-top: 0 !important;
+}
 .hero {
   text-align: center;
   margin-top: 10px;
@@ -32,7 +35,9 @@
   color: white;
   padding-bottom: 2rem;
 }
-
+#about{
+  width: 80%;
+}
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -43,6 +48,20 @@
   margin-top: 20px;
 }
 
+.btna {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgb(0, 47, 255);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.container-packages{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .destinations {
   text-align: center;
   margin: 40px 0;
@@ -78,6 +97,7 @@
   border-radius: 8px;
   margin: 10px;
   padding: 10px;
+  width: 500px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   max-width: 300px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -151,7 +171,8 @@ h1 {
     color: black;
 }
 .loader {
-    display: inline-block;
+    display: block;
+    margin: 2rem auto;
     width: 80px;
     height: 80px;
 }
@@ -163,13 +184,25 @@ div .width{
     display: block;
     width: 64px;
     height: 64px;
-    margin: 8px;
+    margin: 8px auto;
     border-radius: 50%;
-    border: 6px solid #512828;
-    border-color: #999 transparent #999 transparent;
+    border: 6px solid #ab2626;
+    border-color: #d60e0e transparent #cd1313 transparent;
     animation: loader 1.2s linear infinite;
 }
 
+.hero-login{
+  height: 30vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: black;
+}
+.form-login{
+  width: 80%;
+  margin: 0 auto;
+
+}
 .logo-header{
     width: 5rem;
 }
@@ -192,21 +225,55 @@ div .width{
     transform: translateY(-200%);
     transition: transform 0.3s ease-in-out;
   }
-  
+  .message-container{
+    border-radius: 2rem;
+  }
+  textarea {
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+  }
+  .container-sendmsg{
+    background-color: #b9b5b569;
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+  .form-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-profile input{
+    border: 1px solid #d3d3d3;
+    border-radius: 1rem;
+    margin-left: 1rem;
+  }
   .mobile-menu.open {
     transform: translateY(0);    
     display: block;
     padding: 2rem;
     border-radius: 0 0 6rem 6rem;
   }
-  
+  .message-container{
+    max-height: 400px; 
+    overflow-y: auto;
+  }
   .mobile-menu li {
     padding: 1rem;
   }
- 
+  .link{
+    color: blue;
+    text-decoration: underline;
+  }
+ .link-delete{
+  color: red;
+  text-decoration: underline;
+ }
   @media (min-width: 768px) {
     .nav-object{
       justify-content: center;
+    }
+    .container-packages{
+      flex-direction: row;
     }
     .mobile-menu {
         z-index: auto; 

@@ -1,13 +1,16 @@
 import { createUserWithEmailAndPassword, 
          onAuthStateChanged, 
          signInWithEmailAndPassword, 
-         signOut } from "firebase/auth"
+         signOut, updateProfile } from "firebase/auth"
 import { auth } from "./firebase"
-import { createUserProfile } from "./user";
+import { createUserProfile, editUserProfile } from "./user";
 
 let userData = {
     id: null,
     email: null,
+    name: null,
+    interests:null,
+    role: null,
 }
 let observers = [];
 
@@ -15,45 +18,83 @@ if(localStorage.getItem('userData')) {
     userData = JSON.parse(localStorage.getItem('userData'));
 }
 
-onAuthStateChanged(auth, user => {
-    if(user) {
-        userData = {
-            id: user.uid,
-            email: user.email,
-        }
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+      userData = {
+        id: user.uid,
+        email: user.email,
+        role: checkAdminCriteria(user.email),
+      };
     } else {
-        userData = {
-            id: null,
-            email: null,
-        }
+      userData = {
+        id: null,
+        email: null,
+        role: null, 
+      };
     }
-    localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem("userData", JSON.stringify(userData));
     notifyAll();
-});
+  });
+
+
+function checkAdminCriteria(email) {
+    const isAdmin = email.endsWith('@admin.com'); 
+    return isAdmin;
+}
 
 /**
  * Create user profile
  * 
- * @param {{email: string, password: string}} user
+ * @param {{email: string, name: string, interests: string, password: string}} user
  * @returns {Promise}
  */
-export async function register({email, password}) {
+export async function register({ email, password, name, interests }) {
     try {
+        const isAdmin = checkAdminCriteria(email);
+
         const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
 
-      //save user in Firebase
-        createUserProfile(userCredentials.user.uid, {
-            email
+        const userRole = isAdmin ? "admin" : "user";
+
+        // Save user in Firebase 
+        await createUserProfile(userCredentials.user.uid, {
+            name,
+            interests,
+            email,
+            role: userRole,
         });
 
-        return {...userData};
+        const updatedUserData = {
+            id: userCredentials.user.uid,
+            email,
+            name,
+            interests,
+            role: userRole, 
+        };
+
+        userData = updatedUserData;
+
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        return updatedUserData;
     } catch (error) {
+        console.error("Error during user registration:", error);
         return {
             code: error.code,
-            message: error.message
-        }
+            message: error.message,
+        };
     }
 }
+
+
+/**
+ * Fetch user data from the server
+ * @returns {Promise}
+ */
+export async function fetchUserData() {
+    return userData;
+}
+
 
 /**
  * Session Start
@@ -84,6 +125,34 @@ export function login({email, password}) {
 export function logout() {
 
     return signOut(auth);
+}
+
+/**
+ * @param {{name: string|null}} data
+ * @return {Promise}
+ */
+
+export async function editUser({name}) {
+    try {
+        const promiseAuth = updateProfile(auth.currentUser, {
+            name
+        });
+
+        const promiseProfile = editUserProfile(userData.id, {
+            name
+        });
+
+        userData = {
+            ...userData,
+            name,
+        }
+        localStorage.setItem('user', JSON.stringify(userData));
+        notifyAll();
+
+        return Promise.all([promiseAuth, promiseProfile]);
+    } catch (error) {
+        throw error;
+    }
 }
 
 /**
